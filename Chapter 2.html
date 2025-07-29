@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Report: Lifestyle Medicine Assessment Tools in Taiwan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    
+    
+    
+    <link rel="stylesheet" href="styles.css">
     <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
     <!-- Application Structure Plan: A multi-section, scrollable single-page application. The design aims to provide a logical flow from the problem context to solutions, tools, applications, and future outlook. Each section is distinct, allowing users to focus on specific aspects of Lifestyle Medicine Assessment (LMA) tools. Interactive elements like expandable sections for objectives and clickable cards for validated tools enhance exploration without overwhelming the user. This structure prioritizes comprehensive understanding and ease of navigation through segmented content. -->
     <!-- Visualization & Content Choices: 
@@ -24,7 +24,7 @@
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #f8f7f4;
+            background-color: #F2F0EC;
             color: #3a3a3a;
         }
         .chart-container {
@@ -103,44 +103,44 @@
             <!-- Navigation -->
             <nav class="mb-4">
                 <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-                    <a href="Chapter 1.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 1.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 1: Overview
                     </a>
-                    <a href="Chapter 2.html" class="nav-tab active px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-[#003366] text-white">
+                    <a href="Chapter 2.html" class="nav-tab active px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-white">
                         Chapter 2: Assessment Tools
                     </a>
-                    <a href="Chapter 3.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 3.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 3: Biomarkers
                     </a>
-                    <a href="Chapter 4.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 4.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 4: Healthy Eating
                     </a>
-                    <a href="Chapter 5.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 5.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 5: Physical Activity
                     </a>
-                    <a href="Chapter 6.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 6.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 6: Restorative Sleep
                     </a>
-                    <a href="Chapter 7.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 7.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 7: Stress Management
                     </a>
-                    <a href="Chapter 8.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 8.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 8: Risky Substances
                     </a>
-                    <a href="Chapter 9.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 9.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 9: Social Connection
                     </a>
-                    <a href="Chapter 10.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 10.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 10: Sedentary Behaviors
                     </a>
-                    <a href="Chapter 11.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 11.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 11: Shift Work
                     </a>
                 </div>
             </nav>
             <!-- Title -->
             <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-[#003366]">Lifestyle Medicine Assessment Tools in Taiwan</h1>
+                <h1 class="text-3xl md:text-4xl font-bold text-[#6B7A5A]">Taiwan Expert Consensus on Lifestyle Medicine: A Culturally Adapted Approach to Holistic Health</h1>
                 <p class="mt-2 text-lg text-gray-600">Exploring the systematic evaluation of health behaviors for chronic disease prevention.</p>
             </div>
         </div>
@@ -150,7 +150,7 @@
         
         <section id="introduction" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Introduction: The Imperative for Assessment</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Introduction: The Imperative for Assessment</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Lifestyle Medicine Assessment (LMA) systematically evaluates daily behaviors across the six pillars of lifestyle medicine to understand their impact on health. This section highlights the growing burden of chronic diseases in Taiwan and underscores the critical need for effective assessment tools.</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
@@ -196,7 +196,7 @@
             </div>
             <div class="mt-10 bg-white p-6 rounded-xl shadow-md">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Cultural Context in Taiwan</h3>
-                <p class="text-gray-700">Taiwan's unique cultural landscape presents both opportunities and challenges for lifestyle assessment. Traditional practices like family-style meals and community exercise groups support healthy living. However, modern influences such as night-market dining, high-sodium condiments, long working hours, shift work, and widespread betel-nut chewing promote unhealthy behaviors. Effective LMA must quantify both beneficial and harmful behaviors while accounting for these sociocultural practices.</p>
+                <p class="text-[#5A5A52]">Taiwan's unique cultural landscape presents both opportunities and challenges for lifestyle assessment. Traditional practices like family-style meals and community exercise groups support healthy living. However, modern influences such as night-market dining, high-sodium condiments, long working hours, shift work, and widespread betel-nut chewing promote unhealthy behaviors. Effective LMA must quantify both beneficial and harmful behaviors while accounting for these sociocultural practices.</p>
                 <div class="flex flex-wrap justify-center gap-4 mt-6">
                     <span class="text-4xl" title="Night Market Dining">🍜</span>
                     <span class="text-4xl" title="Betel Nut Chewing">🌿</span>
@@ -209,7 +209,7 @@
 
         <section id="objectives" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Objectives of Lifestyle Assessment</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Objectives of Lifestyle Assessment</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">An effective LMA instrument serves multiple critical goals, from comprehensive evaluation to supporting research. Click on each objective to understand its importance in promoting health and well-being.</p>
             </div>
             <div class="space-y-4 max-w-3xl mx-auto">
@@ -219,7 +219,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">The tool must examine positive and negative behaviors across all six pillars and include culturally relevant factors such as betel-nut use, night-market eating, and sleep patterns associated with shift work. Quantitative questions provide richer data than simple yes/no queries.</p>
+                        <p class="text-[#5A5A52]">The tool must examine positive and negative behaviors across all six pillars and include culturally relevant factors such as betel-nut use, night-market eating, and sleep patterns associated with shift work. Quantitative questions provide richer data than simple yes/no queries.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -228,7 +228,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Lifestyle behaviors evolve over time. Repeating assessments at regular intervals establishes baselines, documents progress, and informs adjustments to the care plan, illustrating the value of longitudinal monitoring.</p>
+                        <p class="text-[#5A5A52]">Lifestyle behaviors evolve over time. Repeating assessments at regular intervals establishes baselines, documents progress, and informs adjustments to the care plan, illustrating the value of longitudinal monitoring.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -237,7 +237,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">By identifying domain-specific risk factors, clinicians can deliver tailored interventions grounded in the patient’s cultural and socioeconomic context. Strong social support networks should be leveraged during counseling.</p>
+                        <p class="text-[#5A5A52]">By identifying domain-specific risk factors, clinicians can deliver tailored interventions grounded in the patient’s cultural and socioeconomic context. Strong social support networks should be leveraged during counseling.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -246,7 +246,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Aggregated LMA data enable researchers to study associations between lifestyle behaviors and health outcomes and support public-health planning, allowing prediction of high-risk individuals and evaluation of intervention effectiveness.</p>
+                        <p class="text-[#5A5A52]">Aggregated LMA data enable researchers to study associations between lifestyle behaviors and health outcomes and support public-health planning, allowing prediction of high-risk individuals and evaluation of intervention effectiveness.</p>
                     </div>
                 </div>
             </div>
@@ -254,13 +254,13 @@
 
         <section id="technologies" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Contemporary Assessment Technologies</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Contemporary Assessment Technologies</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Advances in mobile and wearable technologies are transforming lifestyle assessment. This section explores the opportunities these digital tools provide, as well as the challenges that need to be addressed for their widespread and equitable adoption.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-2xl font-semibold text-teal-600 mb-4 flex items-center">Opportunities <span class="ml-2 text-3xl">📈</span></h3>
-                    <ul class="list-none space-y-3 text-gray-700">
+                    <h3 class="text-2xl font-semibold text-[#85A885] mb-4 flex items-center">Opportunities <span class="ml-2 text-3xl">📈</span></h3>
+                    <ul class="list-none space-y-3 text-[#5A5A52]">
                         <li class="flex items-start"><span class="text-xl mr-3">✅</span> Real-time data collection on physical activity, sleep, diet, stress.</li>
                         <li class="flex items-start"><span class="text-xl mr-3">✅</span> Significant improvements in health behaviors (e.g., HbA1c).</li>
                         <li class="flex items-start"><span class="text-xl mr-3">✅</span> Acceptable and valid measures for physical activity via smartphones.</li>
@@ -269,7 +269,7 @@
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <h3 class="text-2xl font-semibold text-red-600 mb-4 flex items-center">Challenges <span class="ml-2 text-3xl">⚠️</span></h3>
-                    <ul class="list-none space-y-3 text-gray-700">
+                    <ul class="list-none space-y-3 text-[#5A5A52]">
                         <li class="flex items-start"><span class="text-xl mr-3">❌</span> Inconclusive evidence for long-term weight loss and sustained behavior change without additional support.</li>
                         <li class="flex items-start"><span class="text-xl mr-3">❌</span> Disparities in digital access among older adults and rural communities (digital divide).</li>
                         <li class="flex items-start"><span class="text-xl mr-3">❌</span> Concerns about data privacy and device accuracy.</li>
@@ -281,7 +281,7 @@
 
         <section id="validated-tools" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Validated Lifestyle Assessment Tools</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Validated Lifestyle Assessment Tools</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Several questionnaires have been developed and validated globally. Click on each tool to learn about its focus, key features, and relevance, especially within the Taiwanese context.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -310,12 +310,12 @@
 
         <section id="taiwan-specific" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Taiwan-Specific Assessment Tool Development</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Taiwan-Specific Assessment Tool Development</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Recognizing the limitations of international tools, the Taiwan Association of Lifestyle Medicine has developed a culturally tailored LMA tool. This section highlights its unique features and importance for local application.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4">The Taiwan-Adapted 22-item LMA Tool</h3>
-                <ul class="list-none space-y-3 text-gray-700">
+                <ul class="list-none space-y-3 text-[#5A5A52]">
                     <li class="flex items-start"><span class="text-xl mr-3">✅</span> Covers all LM domains and explicitly addresses local lifestyle patterns.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">✅</span> Includes questions on betel-nut use, night-market dining, and extended working hours.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">✅</span> Scoring algorithm assigns points proportional to behavior's impact on morbidity and mortality.</li>
@@ -327,27 +327,27 @@
 
         <section id="application-future" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Clinical Application & Future Directions</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Clinical Application & Future Directions</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Integrating LMA into routine care requires thoughtful strategies and cultural sensitivity. Looking ahead, innovations in data integration and artificial intelligence promise to revolutionize personalized preventive care.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Clinical Implementation <span class="ml-2 text-3xl">🏥</span></h3>
-                    <ul class="list-none space-y-3 text-gray-700">
-                        <li class="flex items-start"><span class="text-xl mr-3">📝</span> **Pre-visit questionnaires:** Streamline consultations.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🔄</span> **Follow-up assessments:** Document progress and adjust plans.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> **5 A's framework:** Ask, Advise, Assess, Assist, Arrange for structured counseling.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🤝</span> **Cultural tailoring:** Suggest healthier night-market options, address betel-nut use, leverage Tai Chi/qigong, engage family.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🏘️</span> **Community programs:** Extend reach and foster social support.</li>
+                    <ul class="list-none space-y-3 text-[#5A5A52]">
+                        <li class="flex items-start"><span class="text-xl mr-3">📝</span> <strong>Pre-visit questionnaires:</strong> Streamline consultations.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🔄</span> <strong>Follow-up assessments:</strong> Document progress and adjust plans.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> <strong>5 A's framework:</strong> Ask, Advise, Assess, Assist, Arrange for structured counseling.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🤝</span> <strong>Cultural tailoring:</strong> Suggest healthier night-market options, address betel-nut use, leverage Tai Chi/qigong, engage family.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🏘️</span> <strong>Community programs:</strong> Extend reach and foster social support.</li>
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Future Innovations <span class="ml-2 text-3xl">🚀</span></h3>
-                    <ul class="list-none space-y-3 text-gray-700">
-                        <li class="flex items-start"><span class="text-xl mr-3">📊</span> **Integrated data sources:** Combine self-report, wearables, biomarkers, environmental data.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🧠</span> **AI & Machine Learning:** Analyze complex datasets, predict outcomes, tailor recommendations.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🧬</span> **Precision Medicine:** Individualize prescriptions using genetic/metabolic markers.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">📱</span> **Adaptive digital platforms:** Adjust feedback based on user input and cultural preferences.</li>
+                    <ul class="list-none space-y-3 text-[#5A5A52]">
+                        <li class="flex items-start"><span class="text-xl mr-3">📊</span> <strong>Integrated data sources:</strong> Combine self-report, wearables, biomarkers, environmental data.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🧠</span> <strong>AI & Machine Learning:</strong> Analyze complex datasets, predict outcomes, tailor recommendations.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🧬</span> <strong>Precision Medicine:</strong> Individualize prescriptions using genetic/metabolic markers.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📱</span> <strong>Adaptive digital platforms:</strong> Adjust feedback based on user input and cultural preferences.</li>
                     </ul>
                 </div>
             </div>
@@ -355,11 +355,11 @@
 
         <section id="challenges" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Challenges and Limitations</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Challenges and Limitations</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Despite its potential, LMA tools face several hurdles that need to be addressed for optimal effectiveness and widespread adoption.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-gray-700">
+                <ul class="list-none space-y-4 text-[#5A5A52]">
                     <li class="flex items-start"><span class="text-xl mr-3">🚫</span> <strong class="text-red-700">Self-report bias:</strong> Recall errors and social desirability can undermine accuracy. Mitigation: shorter recall periods, validated questions, objective measures.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">🌍</span> <strong class="text-red-700">Cultural and linguistic adaptation:</strong> Western tools may not resonate locally. Requires rigorous translation, back-translation, and community involvement.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">⏱️</span> <strong class="text-red-700">Time and resource constraints:</strong> Busy clinical settings limit comprehensive assessment. Short screening tools and digital platforms can increase feasibility.</li>
@@ -372,11 +372,11 @@
 
         <section id="take-home" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Take-Home Messages</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Take-Home Messages</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Key insights and actionable takeaways from the assessment of lifestyle medicine tools.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-gray-700">
+                <ul class="list-none space-y-4 text-[#5A5A52]">
                     <li class="flex items-start"><span class="text-xl mr-3">💡</span> LMA systematically evaluates behaviors across six pillars; instruments must be adapted to Taiwan’s cultural context.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">💡</span> Chronic diseases and multimorbidity are increasing in Taiwan; smoking, low vegetable/fruit intake, and physical inactivity significantly elevate mortality risk.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">💡</span> Adopting multiple healthy lifestyle behaviors can extend life expectancy by over seven years and reduce healthcare costs by roughly one-quarter.</li>
@@ -399,8 +399,8 @@
     <div id="toolModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h3 id="modalTitle" class="text-2xl font-bold text-[#003366] mb-4"></h3>
-            <div id="modalContent" class="text-gray-700 space-y-3"></div>
+            <h3 id="modalTitle" class="text-2xl font-bold text-[#6B7A5A] mb-4"></h3>
+            <div id="modalContent" class="text-[#5A5A52] space-y-3"></div>
         </div>
     </div>
 
@@ -410,7 +410,7 @@
                 prevalence: {
                     labels: ['2000', '2010', '≥65 years (2010)'],
                     data: [9.6, 17.1, 64.5],
-                    backgroundColor: ['#60a5fa', '#3b82f6', '#1d4ed8']
+                    backgroundColor: ['#B5858A', '#B5858A', '#1d4ed8']
                 }
             };
 

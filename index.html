@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Report: Lifestyle Medicine in Taiwan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
     <!-- Application Structure Plan: A three-section narrative scrolling experience (The Challenge, The Intervention, The Impact). This linear storytelling approach guides the user logically from problem to solution to benefits, making complex information highly digestible. Interactivity (clickable pillars, animated charts) is embedded within each section to encourage exploration without disrupting the primary flow. This design was chosen for its clarity, educational effectiveness, and strong narrative guidance, which is ideal for presenting a strategic health report. -->
     <!-- Visualization & Content Choices: 
@@ -19,7 +15,7 @@
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #f8f7f4;
+            background-color: #F2F0EC;
             color: #3a3a3a;
         }
         .chart-container {
@@ -54,99 +50,134 @@
             padding-top: 1rem;
             padding-bottom: 1rem;
         }
+        .nav-tab {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #E8E4DF 0%, #D4CECC 100%);
+            border: 2px solid transparent;
+            box-shadow: 0 2px 8px rgba(107, 122, 90, 0.1);
+            transition: all 0.3s ease;
+        }
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 122, 90, 0.2);
+            background: linear-gradient(135deg, #6B7A5A 0%, #85A885 100%);
+            border-color: #B5858A;
+        }
+        .nav-tab.active {
+            background: linear-gradient(135deg, #6B7A5A 0%, #85A885 100%);
+            box-shadow: 0 4px 16px rgba(107, 122, 90, 0.3);
+            border-color: #B5858A;
+        }
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        .nav-tab:hover::before {
+            left: 100%;
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="bg-white py-4 shadow-sm">
-        <div class="container mx-auto px-6">
-            <!-- Navigation -->
+    <header>
+        <div class="container">
             <nav class="mb-4">
-                <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-                    <a href="Chapter 1.html" class="nav-tab active px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-[#003366] text-white">
-                        Chapter 1: Overview
+                <div class="nav-container">
+                    <a href="Chapter 1.html" class="nav-tab active">
+                        📊 Chapter 1: Overview
                     </a>
-                    <a href="Chapter 2.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 2: Assessment Tools
+                    <a href="Chapter 2.html" class="nav-tab">
+                        🔍 Chapter 2: Assessment Tools
                     </a>
-                    <a href="Chapter 3.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 3: Biomarkers
+                    <a href="Chapter 3.html" class="nav-tab">
+                        🧬 Chapter 3: Biomarkers
                     </a>
-                    <a href="Chapter 4.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 4: Healthy Eating
+                    <a href="Chapter 4.html" class="nav-tab">
+                        🥗 Chapter 4: Healthy Eating
                     </a>
-                    <a href="Chapter 5.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 5: Physical Activity
+                    <a href="Chapter 5.html" class="nav-tab">
+                        🏃 Chapter 5: Physical Activity
                     </a>
-                    <a href="Chapter 6.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 6: Restorative Sleep
+                    <a href="Chapter 6.html" class="nav-tab">
+                        😴 Chapter 6: Restorative Sleep
                     </a>
-                    <a href="Chapter 7.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 7: Stress Management
+                    <a href="Chapter 7.html" class="nav-tab">
+                        🧘 Chapter 7: Stress Management
                     </a>
-                    <a href="Chapter 8.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 8: Risky Substances
+                    <a href="Chapter 8.html" class="nav-tab">
+                        🚭 Chapter 8: Risky Substances
                     </a>
-                    <a href="Chapter 9.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 9: Social Connection
+                    <a href="Chapter 9.html" class="nav-tab">
+                        🤝 Chapter 9: Social Connection
                     </a>
-                    <a href="Chapter 10.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 10: Sedentary Behaviors
+                    <a href="Chapter 10.html" class="nav-tab">
+                        💺 Chapter 10: Sedentary Behaviors
                     </a>
-                    <a href="Chapter 11.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
-                        Chapter 11: Shift Work
+                    <a href="Chapter 11.html" class="nav-tab">
+                        🌙 Chapter 11: Shift Work
                     </a>
                 </div>
             </nav>
             <!-- Title -->
-            <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-[#003366]">Lifestyle Medicine: A Strategic Approach to Mitigate Chronic Disease Burden in Taiwan</h1>
-                <p class="mt-2 text-lg text-gray-600">An interactive summary of key findings and impacts.</p>
+            <div class="title-container">
+                <h1>Taiwan Expert Consensus on Lifestyle Medicine: A Culturally Adapted Approach to Holistic Health</h1>
+                <p class="subtitle">An interactive summary of key findings and impacts.</p>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto p-4 md:p-8">
+    <main class="container">
         
         <section id="challenge" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">The Escalating Burden of Chronic Disease</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">This section illustrates the significant public health challenge Taiwan faces due to chronic diseases. The following visualizations present key statistics on mortality and prevalence, providing context for the urgent need for effective interventions.</p>
+            <div class="section-header">
+                <h2>The Escalating Burden of Chronic Disease</h2>
+                <p class="section-description">This section illustrates the significant public health challenge Taiwan faces due to chronic diseases. The following visualizations present key statistics on mortality and prevalence, providing context for the urgent need for effective interventions.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
-                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col justify-center items-center text-center h-full">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Mortality from Chronic Disease</h3>
+            <div class="grid grid-cols-1 grid-md-2 grid-lg-3">
+                <div class="card">
+                    <h3>Mortality from Chronic Disease</h3>
                     <div class="chart-container">
-                        <canvas id="mortalityChart"></canvas>
+                        <div style="background: conic-gradient(var(--morandi-dusty-rose) 0% 77%, var(--morandi-warm-gray) 77% 100%); border-radius: 50%; width: 200px; height: 200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: white;">77%</div>
                     </div>
-                    <p class="mt-4 text-gray-600">Chronic diseases are the leading cause of death, highlighting a critical area for public health focus.</p>
+                    <p class="mt-4">Chronic diseases are the leading cause of death, highlighting a critical area for public health focus.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col justify-center items-center text-center h-full">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Prevalence in Older Adults</h3>
+                <div class="card">
+                    <h3>Prevalence in Older Adults</h3>
                     <div class="space-y-6 mt-4">
-                        <div class="flex items-center bg-blue-50 p-4 rounded-lg">
-                            <div class="text-4xl font-bold text-blue-600 mr-4">80%</div>
-                            <p class="text-left text-blue-800">of individuals aged 54+ have at least one chronic condition.</p>
+                        <div class="stat-card" style="background: linear-gradient(135deg, #F0E8E8 0%, var(--morandi-warm-gray) 100%);">
+                            <div class="stat-number stat-blue">80%</div>
+                            <p style="color: var(--morandi-dusty-rose);">of individuals aged 54+ have at least one chronic condition.</p>
                         </div>
-                        <div class="flex items-center bg-teal-50 p-4 rounded-lg">
-                            <div class="text-4xl font-bold text-teal-600 mr-4">70%</div>
-                            <p class="text-left text-teal-800">of individuals aged 65+ have two or more chronic conditions.</p>
+                        <div class="stat-card" style="background: linear-gradient(135deg, #E8F0E8 0%, var(--morandi-warm-gray) 100%);">
+                            <div class="stat-number stat-teal">70%</div>
+                            <p style="color: var(--morandi-sage-light);">of individuals aged 65+ have two or more chronic conditions.</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col justify-center items-center text-center h-full md:col-span-2 lg:col-span-1">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Rising Cardiovascular Disease (CVD)</h3>
+                <div class="card">
+                    <h3>Rising Cardiovascular Disease (CVD)</h3>
                      <div class="chart-container">
-                        <canvas id="cvdTrendChart"></canvas>
+                        <div style="display: flex; justify-content: space-around; align-items: end; height: 200px; margin: 0 auto;">
+                            <div style="background: var(--morandi-dusty-rose); width: 60px; height: 120px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; border-radius: 5px 5px 0 0;">2010</div>
+                            <div style="background: var(--morandi-sage-light); width: 60px; height: 140px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; border-radius: 5px 5px 0 0;">2023</div>
+                        </div>
+                        <p style="text-align: center; margin-top: 1rem; font-weight: bold;">9.6% Increase in CVD Deaths</p>
                     </div>
-                    <p class="mt-4 text-gray-600">CVD deaths have shown a significant increase, underscoring the growing threat.</p>
+                    <p class="mt-4">CVD deaths have shown a significant increase, underscoring the growing threat.</p>
                 </div>
             </div>
         </section>
 
         <section id="intervention" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">The Intervention: Foundational Pillars of Health</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">The Intervention: Foundational Pillars of Health</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Lifestyle Medicine offers a proactive, evidence-based solution. It is built upon six core pillars that address the root causes of chronic illness. Click on each pillar to learn more about its role in promoting long-term health and well-being.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -157,7 +188,7 @@
                         <h3 class="text-xl font-semibold text-gray-800">Healthy Eating</h3>
                     </div>
                     <div id="pillar-1" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-gray-700">Emphasizes a whole-food, plant-predominant diet, rich in fiber and nutrients, while minimizing processed foods, oils, and animal fats to prevent and reverse chronic disease.</p>
+                        <p class="text-[#5A5A52]">Emphasizes a whole-food, plant-predominant diet, rich in fiber and nutrients, while minimizing processed foods, oils, and animal fats to prevent and reverse chronic disease.</p>
                     </div>
                 </div>
 
@@ -167,7 +198,7 @@
                         <h3 class="text-xl font-semibold text-gray-800">Physical Activity</h3>
                     </div>
                     <div id="pillar-2" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-gray-700">Includes regular physical activity customized to individual ability. Aim for at least 150 minutes of moderate-intensity exercise per week to improve cardiovascular health and metabolic function.</p>
+                        <p class="text-[#5A5A52]">Includes regular physical activity customized to individual ability. Aim for at least 150 minutes of moderate-intensity exercise per week to improve cardiovascular health and metabolic function.</p>
                     </div>
                 </div>
 
@@ -177,7 +208,7 @@
                         <h3 class="text-xl font-semibold text-gray-800">Restorative Sleep</h3>
                     </div>
                     <div id="pillar-3" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-gray-700">Focuses on obtaining adequate quantity and quality of sleep (typically 7-9 hours for adults) to support cognitive function, hormonal balance, and immune system health.</p>
+                        <p class="text-[#5A5A52]">Focuses on obtaining adequate quantity and quality of sleep (typically 7-9 hours for adults) to support cognitive function, hormonal balance, and immune system health.</p>
                     </div>
                 </div>
 
@@ -187,7 +218,7 @@
                         <h3 class="text-xl font-semibold text-gray-800">Stress Management</h3>
                     </div>
                     <div id="pillar-4" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-gray-700">Involves techniques like mindfulness, meditation, and yoga to manage chronic stress, which is a key contributor to inflammation and various chronic conditions.</p>
+                        <p class="text-[#5A5A52]">Involves techniques like mindfulness, meditation, and yoga to manage chronic stress, which is a key contributor to inflammation and various chronic conditions.</p>
                     </div>
                 </div>
 
@@ -197,7 +228,7 @@
                         <h3 class="text-xl font-semibold text-gray-800">Avoidance of Risky Substances</h3>
                     </div>
                     <div id="pillar-5" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-gray-700">Encourages cessation of tobacco use and moderation or avoidance of alcohol and other harmful substances that directly contribute to disease risk.</p>
+                        <p class="text-[#5A5A52]">Encourages cessation of tobacco use and moderation or avoidance of alcohol and other harmful substances that directly contribute to disease risk.</p>
                     </div>
                 </div>
 
@@ -207,7 +238,7 @@
                         <h3 class="text-xl font-semibold text-gray-800">Positive Social Connections</h3>
                     </div>
                     <div id="pillar-6" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-gray-700">Promotes strong, supportive social networks, which are crucial for mental and emotional resilience and have been linked to improved health outcomes and longevity.</p>
+                        <p class="text-[#5A5A52]">Promotes strong, supportive social networks, which are crucial for mental and emotional resilience and have been linked to improved health outcomes and longevity.</p>
                     </div>
                 </div>
             </div>
@@ -215,7 +246,7 @@
 
         <section id="impact">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">The Transformative Impact</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">The Transformative Impact</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Implementing Lifestyle Medicine yields significant, measurable benefits for both individuals and the healthcare system. The data below quantifies the positive changes in life expectancy and cost reduction, demonstrating its value as a public health strategy.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8 items-center">
@@ -245,165 +276,16 @@
 
     </main>
 
-    <footer class="bg-white mt-16 py-6 border-t">
-        <div class="container mx-auto px-6 text-center text-gray-500">
+    <footer>
+        <div class="container">
             <p>Source: Taiwan Expert Consensus on Lifestyle Medicine (Fictionalized Data for Demonstration)</p>
-            <p class="text-sm mt-2">&copy; 2025 Interactive Report. All rights reserved.</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">&copy; 2025 Interactive Report. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            const createMortalityChart = () => {
-                const ctx = document.getElementById('mortalityChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Chronic Diseases', 'Other Causes'],
-                        datasets: [{
-                            data: [77, 23],
-                            backgroundColor: ['#ef4444', '#e5e7eb'],
-                            borderColor: ['#ffffff', '#ffffff'],
-                            borderWidth: 4,
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        cutout: '70%',
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: { size: 14 }
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return `${context.label}: ${context.raw}%`;
-                                    }
-                                }
-                            },
-                            title: {
-                                display: true,
-                                text: '77% of Deaths from Chronic Disease',
-                                font: { size: 18, weight: 'bold' },
-                                padding: { top: 10, bottom: 20 }
-                            }
-                        }
-                    }
-                });
-            };
-
-            const createCvdTrendChart = () => {
-                const ctx = document.getElementById('cvdTrendChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['2010', '2023'],
-                        datasets: [{
-                            label: 'CVD Deaths',
-                            data: [101022, 110720],
-                            backgroundColor: ['#3b82f6', '#10b981'],
-                            borderColor: ['#3b82f6', '#10b981'],
-                            borderWidth: 1,
-                            borderRadius: 5
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false },
-                            title: {
-                                display: true,
-                                text: '9.6% Increase in CVD Deaths',
-                                font: { size: 16, weight: 'bold' },
-                                padding: { top: 10, bottom: 20 }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: false,
-                                ticks: {
-                                    callback: function(value) {
-                                        return (value / 1000) + 'k';
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            };
-
-            const createImpactChart = () => {
-                const ctx = document.getElementById('impactChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Life Expectancy (Years)', 'Healthcare Costs (Index)'],
-                        datasets: [
-                            {
-                                label: 'Baseline',
-                                data: [78, 100],
-                                backgroundColor: '#60a5fa',
-                                borderWidth: 1,
-                                borderRadius: 5
-                            },
-                            {
-                                label: 'With Lifestyle Medicine',
-                                data: [85.13, 71.88],
-                                backgroundColor: '#2dd4bf',
-                                borderWidth: 1,
-                                borderRadius: 5
-                            }
-                        ]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'top' },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.dataset.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        if (context.parsed.x !== null) {
-                                            if (context.label.includes('Costs')) {
-                                                label += `${context.parsed.x.toFixed(2)} (Reduction of ${ (100 - context.parsed.x).toFixed(2) }%)`;
-                                            } else {
-                                                label += `${context.parsed.x.toFixed(2)} years`;
-                                            }
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'Value / Index'
-                                }
-                            }
-                        }
-                    }
-                });
-            };
-
-            createMortalityChart();
-            createCvdTrendChart();
-            createImpactChart();
-
             const pillarCards = document.querySelectorAll('.pillar-card');
             pillarCards.forEach(card => {
                 card.addEventListener('click', () => {
@@ -420,37 +302,23 @@
                 });
             });
 
-            const animateCounter = (element, start, end, duration, suffix = '') => {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const value = Math.floor(progress * (end - start) + start);
-                    element.innerHTML = value.toLocaleString() + suffix;
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            };
-
+            // Simple counter animation for impact section
             const lifeExpectancyEl = document.getElementById('lifeExpectancyCounter');
             const costReductionEl = document.getElementById('costReductionCounter');
-            const impactSection = document.getElementById('impact');
+            
+            if (lifeExpectancyEl && costReductionEl) {
+                const impactSection = document.getElementById('impact');
 
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    animateCounter(lifeExpectancyEl, 0, 7.13 * 100, 2000, '');
-                    lifeExpectancyEl.innerHTML = `+${(7.13).toFixed(2)}`;
-                    
-                    animateCounter(costReductionEl, 0, -28.12 * 100, 2000, '');
-                    costReductionEl.innerHTML = `-${(28.12).toFixed(2)}%`;
-                    
-                    observer.disconnect();
-                }
-            }, { threshold: 0.5 });
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        lifeExpectancyEl.innerHTML = `+7.13`;
+                        costReductionEl.innerHTML = `-28.12`;
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.5 });
 
-            observer.observe(impactSection);
+                observer.observe(impactSection);
+            }
         });
     </script>
 </body>

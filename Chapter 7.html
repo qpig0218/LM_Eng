@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Report: Stress Management in Lifestyle Medicine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    
+    
+    
+    <link rel="stylesheet" href="styles.css">
     <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
     <!-- Application Structure Plan: A multi-section, scrollable single-page application. The structure starts with an Introduction outlining Taiwan's stress landscape and the importance of stress management. Subsequent sections cover Physiological Foundations, Health Outcomes (with interactive details), Evidence-Based Strategies (with expandable sections for each pillar), Cultural/Behavioral Considerations, Implementation Strategies, and Conclusion/Take-Home Messages. Interactive elements include expandable sections for detailed information on health outcomes and strategies, ensuring a comprehensive yet digestible presentation. -->
     <!-- Visualization & Content Choices: 
@@ -23,7 +23,7 @@
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #f8f7f4;
+            background-color: #F2F0EC;
             color: #3a3a3a;
         }
         .chart-container {
@@ -74,44 +74,44 @@
             <!-- Navigation -->
             <nav class="mb-4">
                 <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-                    <a href="Chapter 1.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 1.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 1: Overview
                     </a>
-                    <a href="Chapter 2.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 2.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 2: Assessment Tools
                     </a>
-                    <a href="Chapter 3.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 3.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 3: Biomarkers
                     </a>
-                    <a href="Chapter 4.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 4.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 4: Healthy Eating
                     </a>
-                    <a href="Chapter 5.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 5.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 5: Physical Activity
                     </a>
-                    <a href="Chapter 6.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 6.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 6: Restorative Sleep
                     </a>
-                    <a href="Chapter 7.html" class="nav-tab active px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-[#003366] text-white">
+                    <a href="Chapter 7.html" class="nav-tab active px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-white">
                         Chapter 7: Stress Management
                     </a>
-                    <a href="Chapter 8.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 8.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 8: Risky Substances
                     </a>
-                    <a href="Chapter 9.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 9.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 9: Social Connection
                     </a>
-                    <a href="Chapter 10.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 10.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 10: Sedentary Behaviors
                     </a>
-                    <a href="Chapter 11.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 11.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 11: Shift Work
                     </a>
                 </div>
             </nav>
             <!-- Title -->
             <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-[#003366]">Stress Management: Taiwan's Cultural Approach</h1>
+                <h1 class="text-3xl md:text-4xl font-bold text-[#6B7A5A]">Taiwan Expert Consensus on Lifestyle Medicine: A Culturally Adapted Approach to Holistic Health</h1>
                 <p class="mt-2 text-lg text-gray-600">Integrating evidence-based strategies with local values for resilience.</p>
             </div>
         </div>
@@ -121,41 +121,41 @@
         
         <section id="introduction" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Introduction: Navigating Stress in Taiwan</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Introduction: Navigating Stress in Taiwan</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Stress is a ubiquitous response to life's demands. While acute stress can be adaptive, persistent or intense stress leads to allostatic load, harming physical and mental health. In Taiwan, rapid economic development, high population density, long working hours, and intense academic pressures create unique stressors.</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Taiwan's Stress Landscape</h3>
-                <ul class="list-none space-y-3 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">📈</span> **Economic Development & Density:** Rapid development and high population density contribute to stressors.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💼</span> **Work & Academia:** Long working hours and intense academic pressures are significant sources of stress.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💰</span> **Common Stressors:** Financial, family responsibilities (women report more), and health concerns.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🎭</span> **Cultural Factors:** Expectations of filial duty and maintaining "face" often discourage open discussion of stress, leading to internalized distress or non-medical solutions.</li>
+                <ul class="list-none space-y-3 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">📈</span> <strong>Economic Development & Density:</strong> Rapid development and high population density contribute to stressors.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💼</span> <strong>Work & Academia:</strong> Long working hours and intense academic pressures are significant sources of stress.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💰</span> <strong>Common Stressors:</strong> Financial, family responsibilities (women report more), and health concerns.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🎭</span> <strong>Cultural Factors:</strong> Expectations of filial duty and maintaining "face" often discourage open discussion of stress, leading to internalized distress or non-medical solutions.</li>
                 </ul>
-                <p class="mt-4 text-gray-700 italic">"Chronic stress is now recognized as a major contributor to cardiovascular disease, metabolic disorders, psychiatric illness and premature mortality."</p>
+                <p class="mt-4 text-[#5A5A52] italic">"Chronic stress is now recognized as a major contributor to cardiovascular disease, metabolic disorders, psychiatric illness and premature mortality."</p>
             </div>
         </section>
 
         <section id="physiological-foundations" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Physiological Foundations of Stress and Allostatic Load</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Physiological Foundations of Stress and Allostatic Load</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">The human stress response is orchestrated by the hypothalamic-pituitary-adrenal (HPA) axis and the sympathetic nervous system. While adaptive in acute threats, chronic activation leads to allostatic load and detrimental health effects.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4">The Stress Response Cascade</h3>
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">🧠</span> **HPA Axis Activation:** Stressor perceived → Corticotropin-releasing hormone → Adrenocorticotropic hormone → Cortisol secretion.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">⚡</span> **Sympathetic Nervous System Activation:** Releases catecholamines (epinephrine, norepinephrine).</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💪</span> **Acute Response:** Mobilizes glucose, elevates blood pressure, redirects blood flow to muscles (adaptive).</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🛡️</span> **Immune Shift:** Acute stressors transiently up-regulate innate immunity; chronic stressors suppress both cellular and humoral immunity.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📉</span> **Chronic Activation (Allostatic Load):** Increased cortisol/catecholamines leading to insulin resistance, visceral adiposity, hypertension, dyslipidemia. Impairs hippocampal neurogenesis and prefrontal cortical function, contributing to cognitive decline and mood disorders.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">🧠</span> <strong>HPA Axis Activation:</strong> Stressor perceived → Corticotropin-releasing hormone → Adrenocorticotropic hormone → Cortisol secretion.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">⚡</span> <strong>Sympathetic Nervous System Activation:</strong> Releases catecholamines (epinephrine, norepinephrine).</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💪</span> <strong>Acute Response:</strong> Mobilizes glucose, elevates blood pressure, redirects blood flow to muscles (adaptive).</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🛡️</span> <strong>Immune Shift:</strong> Acute stressors transiently up-regulate innate immunity; chronic stressors suppress both cellular and humoral immunity.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📉</span> <strong>Chronic Activation (Allostatic Load):</strong> Increased cortisol/catecholamines leading to insulin resistance, visceral adiposity, hypertension, dyslipidemia. Impairs hippocampal neurogenesis and prefrontal cortical function, contributing to cognitive decline and mood disorders.</li>
                 </ul>
             </div>
         </section>
 
         <section id="health-outcomes" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Stress-Related Health Outcomes</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Stress-Related Health Outcomes</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Chronic psychological stress significantly increases the risk for various health conditions, affecting cardiovascular, metabolic, immune, and mental health systems.</p>
             </div>
             <div class="space-y-4 max-w-3xl mx-auto">
@@ -165,7 +165,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li>High perceived stress: <strong class="text-red-700">27% higher risk</strong> of developing coronary heart disease.</li>
                             <li>Contributes to: Insulin resistance, central obesity, type 2 diabetes (via sustained cortisol secretion and unhealthy behaviors).</li>
                         </ul>
@@ -177,7 +177,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li>Increased susceptibility to viral infections.</li>
                             <li>Slower wound healing.</li>
                         </ul>
@@ -189,7 +189,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li>Persistent stress can precipitate: Anxiety, depression, sleep disorders.</li>
                             <li>Insomnia/sleep restriction: Exacerbates stress.</li>
                             <li>Insufficient sleep (<7 hours): Associated with weight gain, obesity, diabetes, hypertension, heart disease, stroke, depression, impaired immune function, increased mortality.</li>
@@ -202,7 +202,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Individuals with strong social relationships: <strong class="text-teal-600">50% higher likelihood of survival</strong> than those with weaker relationships. Protective effect comparable to quitting smoking and exceeding physical activity benefits.</p>
+                        <p class="text-[#5A5A52]">Individuals with strong social relationships: <strong class="text-[#85A885]">50% higher likelihood of survival</strong> than those with weaker relationships. Protective effect comparable to quitting smoking and exceeding physical activity benefits.</p>
                     </div>
                 </div>
             </div>
@@ -210,7 +210,7 @@
 
         <section id="lm-strategies" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Evidence-Based Lifestyle Strategies for Stress Management</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Evidence-Based Lifestyle Strategies for Stress Management</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Lifestyle medicine offers powerful, evidence-based tools to mitigate stress. These strategies, aligned with the six pillars of LM, can be effectively integrated with culturally appropriate interventions in Taiwan.</p>
             </div>
             <div class="space-y-4 max-w-3xl mx-auto">
@@ -220,7 +220,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Dietary patterns influence stress physiology. Emphasize plant-predominant diets (similar to TEA pattern), whole grains, fruits, vegetables, legumes, nuts, fish. Encourage traditional foods like tofu, seaweed, green tea, sesame. Limit processed snacks, sugary beverages, refined carbs, saturated fats, caffeine, alcohol.</p>
+                        <p class="text-[#5A5A52]">Dietary patterns influence stress physiology. Emphasize plant-predominant diets (similar to TEA pattern), whole grains, fruits, vegetables, legumes, nuts, fish. Encourage traditional foods like tofu, seaweed, green tea, sesame. Limit processed snacks, sugary beverages, refined carbs, saturated fats, caffeine, alcohol.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -229,7 +229,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Potent stress buffer. Physical activity reduces symptoms of depression (median effect size = -0.43), anxiety (-0.42), and psychological distress (-0.60). Mind-body activities (yoga, Tai Chi, qigong) significantly lower physiological stress markers (heart rate, cortisol, BP). Encourage 150+ minutes/week moderate-intensity aerobic activity + Tai Chi/qigong.</p>
+                        <p class="text-[#5A5A52]">Potent stress buffer. Physical activity reduces symptoms of depression (median effect size = -0.43), anxiety (-0.42), and psychological distress (-0.60). Mind-body activities (yoga, Tai Chi, qigong) significantly lower physiological stress markers (heart rate, cortisol, BP). Encourage 150+ minutes/week moderate-intensity aerobic activity + Tai Chi/qigong.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -238,7 +238,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Essential for stress regulation. Aim for at least 7 hours/night. Counsel on sleep hygiene: consistent schedule, cool/dark/quiet environment, avoid screens/stimulants before bed, limit daytime naps. Regular physical activity and natural light support circadian rhythm. Consider CBT-I if needed.</p>
+                        <p class="text-[#5A5A52]">Essential for stress regulation. Aim for at least 7 hours/night. Counsel on sleep hygiene: consistent schedule, cool/dark/quiet environment, avoid screens/stimulants before bed, limit daytime naps. Regular physical activity and natural light support circadian rhythm. Consider CBT-I if needed.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -247,7 +247,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Strong social ties buffer stress (50% survival advantage). Encourage nurturing supportive relationships, participating in group activities (temple gatherings, volunteer work, community exercise), cultivating meaningful roles. Address toxic relationships and set healthy boundaries.</p>
+                        <p class="text-[#5A5A52]">Strong social ties buffer stress (50% survival advantage). Encourage nurturing supportive relationships, participating in group activities (temple gatherings, volunteer work, community exercise), cultivating meaningful roles. Address toxic relationships and set healthy boundaries.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -256,7 +256,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Nicotine, alcohol, betel nut compound stress physiology. Nicotine/betel nut alkaloids stimulate sympathetic nervous system. Interventions should involve motivational interviewing, support groups, pharmacotherapy. Betel nut cessation programs need cultural tailoring and community leader involvement.</p>
+                        <p class="text-[#5A5A52]">Nicotine, alcohol, betel nut compound stress physiology. Nicotine/betel nut alkaloids stimulate sympathetic nervous system. Interventions should involve motivational interviewing, support groups, pharmacotherapy. Betel nut cessation programs need cultural tailoring and community leader involvement.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -265,7 +265,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Exposure to natural environments lowers stress biomarkers. Spending 20-30 minutes outdoors 3 times/week reduced salivary cortisol by >20% per hour and alpha-amylase by 28% per hour. Prescribe nature breaks (parks, forest bathing, temple gardens).</p>
+                        <p class="text-[#5A5A52]">Exposure to natural environments lowers stress biomarkers. Spending 20-30 minutes outdoors 3 times/week reduced salivary cortisol by >20% per hour and alpha-amylase by 28% per hour. Prescribe nature breaks (parks, forest bathing, temple gardens).</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -274,7 +274,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Mindfulness-Based Stress Reduction (MBSR) is evidence-based for chronic stress, anxiety, depression (moderate effects, benefits maintained for months). Involves mindful breathing, body scanning, gentle yoga. Briefer exercises (5-min breathing pauses) offer immediate relief. Combine with movement (mindful walking, Tai Chi) for adherence/cultural acceptability.</p>
+                        <p class="text-[#5A5A52]">Mindfulness-Based Stress Reduction (MBSR) is evidence-based for chronic stress, anxiety, depression (moderate effects, benefits maintained for months). Involves mindful breathing, body scanning, gentle yoga. Briefer exercises (5-min breathing pauses) offer immediate relief. Combine with movement (mindful walking, Tai Chi) for adherence/cultural acceptability.</p>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md">
@@ -283,7 +283,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <p class="text-gray-700">Slow diaphragmatic breathing, progressive muscle relaxation, guided imagery activate parasympathetic nervous system, reducing heart rate and blood pressure. Practicing slow breathing (6-10 breaths/min) improves heart rate variability, reduces perceived stress. Teach simple techniques for daily practice or acute stress.</p>
+                        <p class="text-[#5A5A52]">Slow diaphragmatic breathing, progressive muscle relaxation, guided imagery activate parasympathetic nervous system, reducing heart rate and blood pressure. Practicing slow breathing (6-10 breaths/min) improves heart rate variability, reduces perceived stress. Teach simple techniques for daily practice or acute stress.</p>
                     </div>
                 </div>
             </div>
@@ -291,44 +291,44 @@
 
         <section id="cultural-behavioral" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Cultural and Behavioral Considerations in Taiwan</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Cultural and Behavioral Considerations in Taiwan</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Stress management strategies must be culturally sensitive to be effective in Taiwan, acknowledging local values, social expectations, and gender roles.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">💪</span> **Cultural Values:** Personal resilience and self-reliance are valued; individuals often mobilize personal resources before seeking external help.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">☯️</span> **Traditional Chinese Medicine:** Emphasizes balance of yin and yang; emotional regulation integral to health. Practices like Tai Chi, qigong, meditation align with these philosophies.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🙏</span> **Religious/Spiritual Beliefs:** Visiting temples, burning incense, praying are common coping mechanisms.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📚</span> **Social Expectations:** Heavy academic workloads, competition, long working hours, limited work-life balance contribute to stress.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">⏰</span> **Practical Integration:** Help patients incorporate short exercise breaks, micro-nature experiences, mindful breathing during commutes/lunch, set boundaries around work/study.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">👫</span> **Gender Roles:** Women may shoulder greater caregiving burdens; men may internalize financial stress. Interventions should address these differences and promote equitable distribution of duties.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">💪</span> <strong>Cultural Values:</strong> Personal resilience and self-reliance are valued; individuals often mobilize personal resources before seeking external help.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">☯️</span> <strong>Traditional Chinese Medicine:</strong> Emphasizes balance of yin and yang; emotional regulation integral to health. Practices like Tai Chi, qigong, meditation align with these philosophies.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🙏</span> <strong>Religious/Spiritual Beliefs:</strong> Visiting temples, burning incense, praying are common coping mechanisms.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📚</span> <strong>Social Expectations:</strong> Heavy academic workloads, competition, long working hours, limited work-life balance contribute to stress.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">⏰</span> <strong>Practical Integration:</strong> Help patients incorporate short exercise breaks, micro-nature experiences, mindful breathing during commutes/lunch, set boundaries around work/study.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">👫</span> <strong>Gender Roles:</strong> Women may shoulder greater caregiving burdens; men may internalize financial stress. Interventions should address these differences and promote equitable distribution of duties.</li>
                 </ul>
             </div>
         </section>
 
         <section id="implementation-strategies" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Implementation Strategies for Clinicians</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Implementation Strategies for Clinicians</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Healthcare professionals play a pivotal role in assessing stress, educating patients, and guiding them toward sustainable, culturally appropriate coping strategies. Systematic approaches are key.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">📊</span> **Assessment of Stress:** Use validated tools (PSS, DASS) to quantify stress levels. Ask about sources, coping, social support.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📚</span> **Education and Motivation:** Explain physiological effects of chronic stress and benefits of lifestyle interventions. Highlight local success stories.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🎯</span> **Goal Setting and Planning:** Collaborate on SMART goals (e.g., 10 mins Tai Chi 3x/week, nature break 2x/week). Encourage action and coping plans.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📈</span> **Monitoring and Support:** Schedule follow-up visits or use digital platforms. Reinforce positive changes, adjust plans, refer to mental health professionals when needed.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🏘️</span> **Community Engagement:** Leverage community centers, workplace wellness, religious organizations for group interventions. Advocate for policies promoting work-life balance, green spaces, noise control.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">📊</span> <strong>Assessment of Stress:</strong> Use validated tools (PSS, DASS) to quantify stress levels. Ask about sources, coping, social support.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📚</span> <strong>Education and Motivation:</strong> Explain physiological effects of chronic stress and benefits of lifestyle interventions. Highlight local success stories.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🎯</span> <strong>Goal Setting and Planning:</strong> Collaborate on SMART goals (e.g., 10 mins Tai Chi 3x/week, nature break 2x/week). Encourage action and coping plans.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📈</span> <strong>Monitoring and Support:</strong> Schedule follow-up visits or use digital platforms. Reinforce positive changes, adjust plans, refer to mental health professionals when needed.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🏘️</span> <strong>Community Engagement:</strong> Leverage community centers, workplace wellness, religious organizations for group interventions. Advocate for policies promoting work-life balance, green spaces, noise control.</li>
                 </ul>
             </div>
         </section>
 
         <section id="conclusion-takehome" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Conclusion & Take-Home Messages</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Conclusion & Take-Home Messages</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Chronic stress significantly impacts health. Evidence-based lifestyle interventions offer powerful tools to mitigate stress, especially when integrated with Taiwan's cultural traditions and local stressors. Healthcare professionals are key in guiding patients towards sustainable coping strategies.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-gray-700">
+                <ul class="list-none space-y-4 text-[#5A5A52]">
                     <li class="flex items-start"><span class="text-xl mr-3">💡</span> Chronic stress is harmful to health, increasing risk for cardiovascular disease, metabolic disorders, immune dysregulation, and mental illness.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">💡</span> Acute stressors can enhance innate immunity, but chronic stress suppresses both cellular and humoral immunity.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">💡</span> Physical activity has medium effect sizes for reducing depression, anxiety, and psychological distress, while mind-body practices substantially lower physiological stress markers.</li>
