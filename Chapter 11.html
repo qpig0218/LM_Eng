@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Report: Impact of Shift Work on Health and Coping Strategies</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    
+    
+    
+    <link rel="stylesheet" href="styles.css">
     <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
     <!-- Application Structure Plan: A multi-section, scrollable single-page application. The structure begins with an Introduction defining shift work and its impact in Taiwan. Subsequent sections cover Circadian Disruption (biological mechanisms), Epidemiology in Taiwan (prevalence and affected groups), Health Consequences (interactive details for each type), Assessment & Monitoring, Coping Strategies for individuals, Employer & Policy Recommendations, Taiwanese Cultural Context, and a Conclusion with Take-Home Messages. Interactive elements primarily use accordion-style sections to present detailed information on health consequences and coping strategies, allowing users to explore specific areas of interest without overwhelming the main view. This design ensures a comprehensive yet digestible presentation of the chapter's content. -->
     <!-- Visualization & Content Choices: 
@@ -25,7 +25,7 @@
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #f8f7f4;
+            background-color: #F2F0EC;
             color: #3a3a3a;
         }
         .chart-container {
@@ -69,44 +69,44 @@
             <!-- Navigation -->
             <nav class="mb-4">
                 <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-                    <a href="Chapter 1.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 1.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 1: Overview
                     </a>
-                    <a href="Chapter 2.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 2.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 2: Assessment Tools
                     </a>
-                    <a href="Chapter 3.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 3.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 3: Biomarkers
                     </a>
-                    <a href="Chapter 4.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 4.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 4: Healthy Eating
                     </a>
-                    <a href="Chapter 5.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 5.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 5: Physical Activity
                     </a>
-                    <a href="Chapter 6.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 6.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 6: Restorative Sleep
                     </a>
-                    <a href="Chapter 7.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 7.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 7: Stress Management
                     </a>
-                    <a href="Chapter 8.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 8.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 8: Risky Substances
                     </a>
-                    <a href="Chapter 9.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 9.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 9: Social Connection
                     </a>
-                    <a href="Chapter 10.html" class="nav-tab px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-gray-100 text-gray-700 hover:bg-[#003366] hover:text-white">
+                    <a href="Chapter 10.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
                         Chapter 10: Sedentary Behaviors
                     </a>
-                    <a href="Chapter 11.html" class="nav-tab active px-3 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-[#003366] text-white">
+                    <a href="Chapter 11.html" class="nav-tab active px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-white">
                         Chapter 11: Shift Work
                     </a>
                 </div>
             </nav>
             <!-- Title -->
             <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-[#003366]">Impact of Shift Work on Health and Coping Strategies</h1>
+                <h1 class="text-3xl md:text-4xl font-bold text-[#6B7A5A]">Taiwan Expert Consensus on Lifestyle Medicine: A Culturally Adapted Approach to Holistic Health</h1>
                 <p class="mt-2 text-lg text-gray-600">Navigating the challenges of non-standard work schedules in Taiwan.</p>
             </div>
         </div>
@@ -116,59 +116,59 @@
         
         <section id="introduction" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Introduction: The Reality of 24/7 Demands</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Introduction: The Reality of 24/7 Demands</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Shift work, essential for 24-hour industries, misaligns the body’s innate circadian rhythms, imposing substantial burdens on physical and mental health. In Taiwan’s modern economy, a large proportion of workers engage in rotating or night shifts, leading to significant health challenges.</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Shift Work in Taiwan: A Growing Concern</h3>
-                <ul class="list-none space-y-3 text-gray-700">
+                <ul class="list-none space-y-3 text-[#5A5A52]">
                     <li class="flex items-start"><span class="text-xl mr-3">🏭</span> Supports essential 24-hour industries: healthcare, manufacturing, transportation, hospitality.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">⏰</span> Misaligns circadian rhythms, impacting physical and mental health.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">📈</span> Linked to cardiometabolic diseases, sleep disorders, GI disturbances, cancer, and adverse mental health outcomes.</li>
                     <li class="flex items-start"><span class="text-xl mr-3">🇹🇼</span> Cultural factors (emphasis on hard work, family commitments, nighttime leisure) complicate adaptation.</li>
                 </ul>
-                <p class="mt-4 text-gray-700 italic">"Recent systematic reviews highlight the multifaceted effects of shift work and circadian disruption on cardiovascular health."</p>
+                <p class="mt-4 text-[#5A5A52] italic">"Recent systematic reviews highlight the multifaceted effects of shift work and circadian disruption on cardiovascular health."</p>
             </div>
         </section>
 
         <section id="circadian-disruption" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Circadian Disruption: The Biological Impact</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Circadian Disruption: The Biological Impact</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">The human circadian system orchestrates vital bodily functions. Night work and irregular schedules disrupt these internal clocks, leading to misalignment between external demands and internal rhythms, with profound biological consequences.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4">Mechanisms of Circadian Misalignment</h3>
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">🧠</span> **Central & Peripheral Clocks:** Suprachiasmatic nucleus and peripheral clocks synchronize sleep-wake, hormone secretion, metabolism, immune function to light-dark cycle.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Light at Night:** Night work/rotating schedules expose workers to light at night and irregular sleep-wake cycles.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📉</span> **Hormonal & Gene Dysregulation:** Suppresses nocturnal melatonin, blunts cortisol rhythms, desynchronizes clock-gene expression.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📈</span> **Metabolic & Oxidative Stress:** Impairs insulin sensitivity, alters lipid metabolism, provokes oxidative stress, increasing susceptibility to chronic diseases and cancer.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">🧠</span> <strong>Central & Peripheral Clocks:</strong> Suprachiasmatic nucleus and peripheral clocks synchronize sleep-wake, hormone secretion, metabolism, immune function to light-dark cycle.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Light at Night:</strong> Night work/rotating schedules expose workers to light at night and irregular sleep-wake cycles.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📉</span> <strong>Hormonal & Gene Dysregulation:</strong> Suppresses nocturnal melatonin, blunts cortisol rhythms, desynchronizes clock-gene expression.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📈</span> <strong>Metabolic & Oxidative Stress:</strong> Impairs insulin sensitivity, alters lipid metabolism, provokes oxidative stress, increasing susceptibility to chronic diseases and cancer.</li>
                 </ul>
             </div>
         </section>
 
         <section id="epidemiology-taiwan" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Epidemiology of Shift Work in Taiwan</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Epidemiology of Shift Work in Taiwan</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Approximately one quarter of Taiwan’s workforce engages in non-standard schedules, particularly in essential sectors. This widespread practice leads to significant health challenges, especially for women and those in demanding professions.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4">Prevalence and Impact on Taiwanese Workers</h3>
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">👥</span> **Workforce Engagement:** Approximately <strong class="text-blue-600">one quarter</strong> of Taiwan’s workforce in non-standard schedules (healthcare, police, manufacturing, service sectors).</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🩺</span> **Healthcare Workers:** Up to <strong class="text-red-700">10%</strong> of rotating shift nurses meet criteria for shift-work sleep disorder; significant proportion report insomnia and fatigue.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">👮</span> **Police Officers:** Night shifts linked to poorer sleep quality, elevated blood pressure, decreased heart rate variability.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🏭</span> **Other Sectors:** Manufacturing and transportation workers experience disrupted sleep and increased cardiometabolic risk.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">👩‍👧‍👦</span> **Women:** Often bear additional family obligations, more susceptible to shift-work-related depression and anxiety (<strong class="text-red-700">73% higher odds</strong> of depression).</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💰</span> **Socioeconomic Factors:** Economic incentives, limited job alternatives, and cultural norms encourage irregular hours.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🌃</span> **Social Activities:** Evening leisure activities conflict with recovery sleep, compounding health risks.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">👥</span> <strong>Workforce Engagement:</strong> Approximately <strong class="text-[#B5858A]">one quarter</strong> of Taiwan’s workforce in non-standard schedules (healthcare, police, manufacturing, service sectors).</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🩺</span> <strong>Healthcare Workers:</strong> Up to <strong class="text-red-700">10%</strong> of rotating shift nurses meet criteria for shift-work sleep disorder; significant proportion report insomnia and fatigue.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">👮</span> <strong>Police Officers:</strong> Night shifts linked to poorer sleep quality, elevated blood pressure, decreased heart rate variability.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🏭</span> <strong>Other Sectors:</strong> Manufacturing and transportation workers experience disrupted sleep and increased cardiometabolic risk.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">👩‍👧‍👦</span> <strong>Women:</strong> Often bear additional family obligations, more susceptible to shift-work-related depression and anxiety (<strong class="text-red-700">73% higher odds</strong> of depression).</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💰</span> <strong>Socioeconomic Factors:</strong> Economic incentives, limited job alternatives, and cultural norms encourage irregular hours.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🌃</span> <strong>Social Activities:</strong> Evening leisure activities conflict with recovery sleep, compounding health risks.</li>
                 </ul>
             </div>
         </section>
 
         <section id="health-consequences" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Health Consequences of Shift Work</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Health Consequences of Shift Work</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Shift work is linked to a wide array of adverse health outcomes, from metabolic disorders and cardiovascular disease to cancer and significant mental health challenges.</p>
             </div>
             <div class="space-y-4 max-w-3xl mx-auto">
@@ -178,7 +178,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li>Increases odds of metabolic syndrome by <strong class="text-red-700">>2-fold</strong> (OR 2.17).</li>
                             <li>Shift workers have approximately <strong class="text-red-700">twice the risk</strong> of type 2 diabetes (adjusted OR ≈ 1.9-2.0).</li>
                             <li>Longer duration and higher frequency of night shifts exacerbate this risk.</li>
@@ -192,7 +192,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li>Significantly higher risks of myocardial infarction (RR <strong class="text-red-700">1.23</strong>) and coronary events (RR <strong class="text-red-700">1.24</strong>).</li>
                             <li>Night shifts present the greatest risk (pooled RR <strong class="text-red-700">1.41</strong> for coronary events).</li>
                             <li>Taiwanese cohorts show elevated blood pressure, impaired heart rate variability, and carotid atherosclerosis among long-term night workers.</li>
@@ -205,7 +205,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li><strong class="text-red-700">81% higher prevalence</strong> of irritable bowel syndrome (pooled OR 1.81).</li>
                             <li>Mechanisms: Misalignment of meal timing, altered gut microbiota, reduced melatonin. May lead to constipation, reflux, peptic ulcer disease.</li>
                         </ul>
@@ -217,7 +217,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li>Classified as a <strong class="text-red-700">probable human carcinogen</strong> by IARC (2019).</li>
                             <li>Female night-shift workers for <10 years: <strong class="text-red-700">13% higher risk</strong> of breast cancer.</li>
                             <li>Potential mechanisms: Suppression of melatonin, immune dysregulation, increased estrogen levels.</li>
@@ -230,7 +230,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li><strong class="text-red-700">28% higher risk</strong> of adverse mental health outcomes.</li>
                             <li><strong class="text-red-700">33% higher risk</strong> of depressive symptoms.</li>
                             <li>Female shift workers: Up to <strong class="text-red-700">73% higher odds</strong> of depression.</li>
@@ -246,7 +246,7 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
                             <li>Chronic fatigue, impaired cognition, decreased immune function.</li>
                             <li>Reproductive issues: Increased risk of pregnancy complications and subfertility in female night workers.</li>
                             <li>Accidental injuries, road crashes, workplace errors (due to fatigue).</li>
@@ -258,25 +258,25 @@
 
         <section id="assessment-monitoring" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Assessment and Monitoring for Shift Workers</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Assessment and Monitoring for Shift Workers</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Routine assessment and monitoring are crucial for early identification of health issues in shift workers and for tailoring effective intervention strategies.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Clinical Practices</h3>
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">⏰</span> **Inquire about work schedules:** Routinely assess work patterns.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📝</span> **Sleep assessment tools:** Interpret PSQI in context of shift work.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🩺</span> **Screening:** For hypertension, dyslipidemia, glucose intolerance, mental health conditions.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🔬</span> **Biomarker monitoring:** Fasting glucose, HbA1c, lipid profiles regularly.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📊</span> **Circadian phase assessment:** Melatonin or core body temperature (if available) to tailor interventions.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> **Psychosocial factors:** Occupational history, work-family conflict, social support should inform decisions.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">⏰</span> <strong>Inquire about work schedules:</strong> Routinely assess work patterns.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📝</span> <strong>Sleep assessment tools:</strong> Interpret PSQI in context of shift work.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🩺</span> <strong>Screening:</strong> For hypertension, dyslipidemia, glucose intolerance, mental health conditions.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🔬</span> <strong>Biomarker monitoring:</strong> Fasting glucose, HbA1c, lipid profiles regularly.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📊</span> <strong>Circadian phase assessment:</strong> Melatonin or core body temperature (if available) to tailor interventions.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> <strong>Psychosocial factors:</strong> Occupational history, work-family conflict, social support should inform decisions.</li>
                 </ul>
             </div>
         </section>
 
         <section id="coping-strategies" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Coping Strategies for Shift Workers</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Coping Strategies for Shift Workers</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Individual shift workers can adopt various evidence-based strategies to mitigate the adverse health effects of irregular schedules, focusing on sleep, nutrition, stress, and overall health monitoring.</p>
             </div>
             <div class="space-y-4 max-w-3xl mx-auto">
@@ -286,12 +286,12 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>**Protect daytime sleep:** Use blackout curtains, eye masks, earplugs. Maintain regular sleep schedule even on rest days.</li>
-                            <li>**Post-night-shift naps:** 15-30 minutes improve alertness; avoid >45 minutes to prevent sleep inertia.</li>
-                            <li>**Strategic light exposure:** Bright light during night shifts enhances alertness; minimize light after work (sunglasses) for melatonin release. Bright-light interventions reduce sleepiness and improve alertness.</li>
-                            <li>**Forward rotation:** Day→evening→night is physiologically easier; lower tiredness and better sustained attention.</li>
-                            <li>**Melatonin and medications:** Short-term melatonin (1-3 mg) before daytime sleep shortens sleep onset latency. Hypnotics/wake-promoting agents cautiously under supervision.</li>
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
+                            <li><strong>Protect daytime sleep:</strong> Use blackout curtains, eye masks, earplugs. Maintain regular sleep schedule even on rest days.</li>
+                            <li><strong>Post-night-shift naps:</strong> 15-30 minutes improve alertness; avoid >45 minutes to prevent sleep inertia.</li>
+                            <li><strong>Strategic light exposure:</strong> Bright light during night shifts enhances alertness; minimize light after work (sunglasses) for melatonin release. Bright-light interventions reduce sleepiness and improve alertness.</li>
+                            <li><strong>Forward rotation:</strong> Day→evening→night is physiologically easier; lower tiredness and better sustained attention.</li>
+                            <li><strong>Melatonin and medications:</strong> Short-term melatonin (1-3 mg) before daytime sleep shortens sleep onset latency. Hypnotics/wake-promoting agents cautiously under supervision.</li>
                         </ul>
                     </div>
                 </div>
@@ -301,10 +301,10 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>**Meal planning:** Align with circadian rhythms; main meal before night duty, light protein-rich snacks during biological night.</li>
-                            <li>**Avoid:** Heavy, greasy foods, excessive caffeine late in shifts.</li>
-                            <li>**Exercise:** Schedule moderate physical activity after waking or on days off. Short bouts of stretching/walking during breaks reduce musculoskeletal pain.</li>
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
+                            <li><strong>Meal planning:</strong> Align with circadian rhythms; main meal before night duty, light protein-rich snacks during biological night.</li>
+                            <li><strong>Avoid:</strong> Heavy, greasy foods, excessive caffeine late in shifts.</li>
+                            <li><strong>Exercise:</strong> Schedule moderate physical activity after waking or on days off. Short bouts of stretching/walking during breaks reduce musculoskeletal pain.</li>
                         </ul>
                     </div>
                 </div>
@@ -314,11 +314,11 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>**Stress techniques:** Practice mindfulness, deep breathing, Tai Chi, Qigong.</li>
-                            <li>**Social engagement:** Engage family/friends in planning schedules to reduce social isolation.</li>
-                            <li>**Support groups:** Participate in workplace peer support groups or online communities.</li>
-                            <li>**Professional help:** Seek mental health support for depression/anxiety.</li>
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
+                            <li><strong>Stress techniques:</strong> Practice mindfulness, deep breathing, Tai Chi, Qigong.</li>
+                            <li><strong>Social engagement:</strong> Engage family/friends in planning schedules to reduce social isolation.</li>
+                            <li><strong>Support groups:</strong> Participate in workplace peer support groups or online communities.</li>
+                            <li><strong>Professional help:</strong> Seek mental health support for depression/anxiety.</li>
                         </ul>
                     </div>
                 </div>
@@ -328,10 +328,10 @@
                         <span class="text-2xl transform transition-transform duration-300">▼</span>
                     </div>
                     <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>**Annual health evaluations:** Include blood pressure, fasting glucose, lipid profiles, age/sex-appropriate cancer screening.</li>
-                            <li>**Monitor:** Sleep patterns and mental health symptoms using validated questionnaires.</li>
-                            <li>**Report promptly:** Excessive fatigue, cognitive impairment, or mood changes to healthcare provider.</li>
+                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
+                            <li><strong>Annual health evaluations:</strong> Include blood pressure, fasting glucose, lipid profiles, age/sex-appropriate cancer screening.</li>
+                            <li><strong>Monitor:</strong> Sleep patterns and mental health symptoms using validated questionnaires.</li>
+                            <li><strong>Report promptly:</strong> Excessive fatigue, cognitive impairment, or mood changes to healthcare provider.</li>
                         </ul>
                     </div>
                 </div>
@@ -340,51 +340,51 @@
 
         <section id="employer-policy" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Employer and Policy Recommendations</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Employer and Policy Recommendations</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Employers and policymakers play a critical role in mitigating shift-related harm by implementing evidence-based scheduling practices, providing supportive environments, and enforcing labor protections.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Recommendations</h3>
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">🗓️</span> **Scheduling Practices:** Forward rotation, limit consecutive night shifts (3 or fewer), 48+ hours recovery after night duty, avoid quick turnarounds.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🏢</span> **Workplace Environment:** Provide quiet rest areas, bright lighting during night shifts, healthy food options, accessible health screenings.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📚</span> **Occupational Health Programs:** Educate staff about sleep hygiene, nutrition, coping strategies.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🚗</span> **Transportation Assistance:** Consider assistance after night shifts to reduce fatigue-related accidents.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">⚖️</span> **Policy Enforcement:** Enforce labor standards limiting overtime, mandate rest breaks, ensure appropriate compensation and protection.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📢</span> **National Campaigns:** Raise awareness of shift work risks and promote healthy behaviors.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">🗓️</span> <strong>Scheduling Practices:</strong> Forward rotation, limit consecutive night shifts (3 or fewer), 48+ hours recovery after night duty, avoid quick turnarounds.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🏢</span> <strong>Workplace Environment:</strong> Provide quiet rest areas, bright lighting during night shifts, healthy food options, accessible health screenings.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📚</span> <strong>Occupational Health Programs:</strong> Educate staff about sleep hygiene, nutrition, coping strategies.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🚗</span> <strong>Transportation Assistance:</strong> Consider assistance after night shifts to reduce fatigue-related accidents.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">⚖️</span> <strong>Policy Enforcement:</strong> Enforce labor standards limiting overtime, mandate rest breaks, ensure appropriate compensation and protection.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📢</span> <strong>National Campaigns:</strong> Raise awareness of shift work risks and promote healthy behaviors.</li>
                 </ul>
             </div>
         </section>
 
         <section id="cultural-context" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Taiwanese Cultural Context</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Taiwanese Cultural Context</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Taiwan’s culture of industriousness and the prevalence of 24-hour services uniquely shape the experiences of shift workers. Interventions must consider these cultural factors for effective implementation.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">💪</span> **Culture of Industriousness ("拼命"):** Encourages long hours and irregular schedules.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🏪</span> **24-hour Services:** Night markets and convenience stores offer readily available but often unhealthy foods.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🛵</span> **Commuting:** Many shift workers commute by scooter/motorbike, increasing accident risk when fatigued.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🍵</span> **Traditional Practices:** Herbal teas (e.g., chrysanthemum for relaxation), Tai Chi in parks may support health.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">👨‍👩‍👧‍👦</span> **Family Obligations:** Caring for elderly parents or children can conflict with irregular schedules, exacerbating sleep deprivation and stress.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">💪</span> <strong>Culture of Industriousness ("拼命"):</strong> Encourages long hours and irregular schedules.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🏪</span> <strong>24-hour Services:</strong> Night markets and convenience stores offer readily available but often unhealthy foods.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🛵</span> <strong>Commuting:</strong> Many shift workers commute by scooter/motorbike, increasing accident risk when fatigued.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🍵</span> <strong>Traditional Practices:</strong> Herbal teas (e.g., chrysanthemum for relaxation), Tai Chi in parks may support health.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">👨‍👩‍👧‍👦</span> <strong>Family Obligations:</strong> Caring for elderly parents or children can conflict with irregular schedules, exacerbating sleep deprivation and stress.</li>
                 </ul>
-                <p class="mt-4 text-gray-700 italic">"Employers and healthcare providers should consider these cultural factors when designing interventions."</p>
+                <p class="mt-4 text-[#5A5A52] italic">"Employers and healthcare providers should consider these cultural factors when designing interventions."</p>
             </div>
         </section>
 
         <section id="conclusion-takehome" class="mb-16">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#003366] mb-2">Conclusion & Take-Home Messages</h2>
+                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Conclusion & Take-Home Messages</h2>
                 <p class="max-w-3xl mx-auto text-gray-600">Shift work is integral to Taiwan’s economy but carries substantial health costs due to circadian disruption, sleep debt, and hormonal dysregulation. Comprehensive strategies, culturally tailored interventions, and strong employer/policymaker engagement are essential to protect this vital workforce.</p>
             </div>
             <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-gray-700">
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Circadian disruption drives health risks:** Irregular schedules desynchronize biological clocks, leading to metabolic, cardiovascular, and gastrointestinal disorders, and increasing cancer and mental health risks.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Cardiometabolic risks are substantial:** Shift workers face ≥20% higher risks of myocardial infarction and coronary events and roughly twofold higher odds of metabolic syndrome and diabetes.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Mental health suffers:** Longitudinal data show a 28% higher risk of adverse mental health outcomes and 33% higher risk of depressive symptoms; Taiwanese nurses report high prevalence of depression and anxiety.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Evidence-based strategies help:** Forward-rotating schedules, bright-light exposure during night shifts, melatonin, healthy meals, regular exercise, and stress management mitigate risks.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Employer and policy support are essential:** Chronobiology-informed scheduling, rest facilities, healthy food access, health monitoring, and labor protections significantly improve shift worker health and safety.</li>
+                <ul class="list-none space-y-4 text-[#5A5A52]">
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Circadian disruption drives health risks:</strong> Irregular schedules desynchronize biological clocks, leading to metabolic, cardiovascular, and gastrointestinal disorders, and increasing cancer and mental health risks.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Cardiometabolic risks are substantial:</strong> Shift workers face ≥20% higher risks of myocardial infarction and coronary events and roughly twofold higher odds of metabolic syndrome and diabetes.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Mental health suffers:</strong> Longitudinal data show a 28% higher risk of adverse mental health outcomes and 33% higher risk of depressive symptoms; Taiwanese nurses report high prevalence of depression and anxiety.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Evidence-based strategies help:</strong> Forward-rotating schedules, bright-light exposure during night shifts, melatonin, healthy meals, regular exercise, and stress management mitigate risks.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Employer and policy support are essential:</strong> Chronobiology-informed scheduling, rest facilities, healthy food access, health monitoring, and labor protections significantly improve shift worker health and safety.</li>
                 </ul>
             </div>
         </section>
