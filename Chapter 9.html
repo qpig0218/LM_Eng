@@ -3,440 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Report: Positive Social Connection in Lifestyle Medicine</title>
-    
-    
-    
-    
-    <link rel="stylesheet" href="styles.css">
-    <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
-    <!-- Application Structure Plan: A multi-section, scrollable single-page application. The structure starts with an Introduction highlighting the importance of social connection and Taiwan's challenges with loneliness. Subsequent sections cover Definitions/Physiology, Epidemiology in Taiwan, Health Effects (with interactive details), Assessment, Evidence-Based Interventions (with expandable sections), Implementation in Taiwan (cultural/policy), and Conclusion/Take-Home Messages. Interactive elements include accordion-style sections for detailed information and a modal for the "Connection Prescription" framework, ensuring a comprehensive yet digestible presentation. -->
-    <!-- Visualization & Content Choices: 
-        - Introduction: Textual overview of social connection's importance and Taiwan's loneliness statistics (21% lonely, older adults living alone).
-        - Definitions & Physiological Foundations: Clear definitions of social connectedness, loneliness, and social isolation. A clickable card (HTML/CSS/JS) for "Explore Physiological Mechanisms" that opens a modal with detailed bullet points on how positive relationships reduce stress hormones/inflammation and how loneliness triggers adverse biological responses.
-        - Epidemiology in Taiwan: Key statistics on older adults living alone and loneliness prevalence, along with demographic shifts, presented as concise text.
-        - Health Effects: Accordion-style sections (HTML/CSS/JS) for Mortality/Cardiometabolic Health, Mental Health, and Cancer Survival, detailing the profound impacts of social connection. Key percentages and risk ratios are highlighted.
-        - Assessment: Textual overview of validated tools (UCLA Loneliness Scale) and clinical inquiry points.
-        - Evidence-Based Interventions: Accordion-style sections (HTML/CSS/JS) for Psychological/Social Interventions (CBT, MI, Social Prescribing), Lifestyle Interventions (Physical Activity, Sleep/Stress, Nutrition), and Innovative Approaches (Digital Connections, Companion Robots, Nature-Based). Each section provides actionable strategies.
-        - Implementation in Taiwan: Cultural Adaptation and Healthcare Integration/Policy are presented with bullet points for specific Taiwan considerations.
-        - Conclusion & Take-Home Messages: Concise bulleted list for quick review of key information. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>Chapter 9: Positive Social Connection in Taiwan</title>
     <style>
         body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #F2F0EC;
-            color: #3a3a3a;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-                max-height: 400px;
-            }
-        }
-        .accordion-header {
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .accordion-header:hover {
-            background-color: #f0f0f0;
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-        }
-        .accordion-content.open {
-            max-height: 600px; /* Adjusted for potentially longer content in this chapter */
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
             padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 800px; /* Wider for more content */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: relative;
+            background-color: #f4f4f4;
         }
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav a {
             text-decoration: none;
+            color: #007cba;
+            margin: 0 10px;
         }
-        .card-button {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .nav a:hover {
+            text-decoration: underline;
         }
-        .card-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .content {
+            margin: 20px 0;
         }
     </style>
 </head>
-<body class="antialiased">
-
-    <header class="bg-white py-4 shadow-sm">
-        <div class="container mx-auto px-6">
-            <!-- Navigation -->
-            <nav class="mb-4">
-                <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-                    <a href="Chapter 1.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 1: Overview
-                    </a>
-                    <a href="Chapter 2.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 2: Assessment Tools
-                    </a>
-                    <a href="Chapter 3.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 3: Biomarkers
-                    </a>
-                    <a href="Chapter 4.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 4: Healthy Eating
-                    </a>
-                    <a href="Chapter 5.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 5: Physical Activity
-                    </a>
-                    <a href="Chapter 6.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 6: Restorative Sleep
-                    </a>
-                    <a href="Chapter 7.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 7: Stress Management
-                    </a>
-                    <a href="Chapter 8.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 8: Risky Substances
-                    </a>
-                    <a href="Chapter 9.html" class="nav-tab active px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-white">
-                        Chapter 9: Social Connection
-                    </a>
-                    <a href="Chapter 10.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 10: Sedentary Behaviors
-                    </a>
-                    <a href="Chapter 11.html" class="nav-tab px-4 py-3 rounded-xl text-sm md:text-base font-semibold text-[#5A5A52] hover:text-white">
-                        Chapter 11: Shift Work
-                    </a>
-                </div>
-            </nav>
-            <!-- Title -->
-            <div class="text-center">
-                <h1 class="text-3xl md:text-4xl font-bold text-[#6B7A5A]">Taiwan Expert Consensus on Lifestyle Medicine: A Culturally Adapted Approach to Holistic Health</h1>
-                <p class="mt-2 text-lg text-gray-600">Fostering healthy relationships for improved well-being and longevity.</p>
-            </div>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">← Back to Home</a>
         </div>
-    </header>
-
-    <main class="container mx-auto p-4 md:p-8">
         
-        <section id="introduction" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Introduction: The Power of Human Connection</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Positive social connection is an essential pillar of lifestyle medicine. Healthy relationships and a sense of belonging are associated with reduced mortality and improved physical, mental, and cognitive health. In Taiwan's rapidly changing society, loneliness and social isolation have become pressing public health issues.</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Taiwan's Loneliness Landscape</h3>
-                <ul class="list-none space-y-3 text-[#5A5A52]">
-                    <li class="flex items-start"><span class="text-xl mr-3">👥</span> More than <strong class="text-red-700">one fifth</strong> of Taiwanese adults report feeling lonely.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">👵</span> Around <strong class="text-red-700">one in five</strong> older adults live alone.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🏙️</span> Urban residents tend to report higher loneliness than rural residents.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💔</span> Loneliness is common among widowed/divorced individuals and those with chronic diseases.</li>
-                </ul>
-                <p class="mt-4 text-[#5A5A52] italic">"Understanding the physiological mechanisms linking social connection to health, the local epidemiology of loneliness, and evidence-based interventions is crucial for Taiwanese healthcare professionals."</p>
-            </div>
-        </section>
-
-        <section id="definitions-physiology" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Definitions and Physiological Foundations</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Social connection profoundly influences health through various physiological pathways. Understanding these mechanisms highlights why fostering positive relationships is critical for overall well-being.</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto text-center">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">The Biology of Connection</h3>
-                <p class="text-[#5A5A52] mb-4"><strong>Social connectedness</strong> is the degree to which individuals feel embedded within supportive interpersonal networks. <strong>Loneliness</strong> is a subjective feeling of inadequate social connection. <strong>Social isolation</strong> describes an objective lack of social contacts.</p>
-                <button id="openPhysiologicalMechanismsModal" class="mt-4 bg-[#6B7A5A] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#002244] transition-colors duration-300 card-button">Explore Physiological Mechanisms</button>
-            </div>
-        </section>
-
-        <section id="epidemiology" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Epidemiology of Social Connection in Taiwan</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Taiwanese society is undergoing rapid demographic shifts, impacting social structures and participation. These changes contribute to a growing burden of loneliness and social isolation.</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Taiwan's Changing Social Landscape</h3>
-                <ul class="list-none space-y-4 text-[#5A5A52]">
-                    <li class="flex items-start"><span class="text-xl mr-3">👨‍👩‍👧‍👦</span> <strong>Demographic Shifts:</strong> Extended family structures replaced by nuclear or single-person households; social participation has declined.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🏠</span> <strong>Living Alone:</strong> <strong class="text-red-700">9-20%</strong> of older Taiwanese adults live alone.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">😔</span> <strong>Reported Loneliness:</strong> <strong class="text-red-700">21%</strong> of older adults report loneliness.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🏙️</span> <strong>Urban vs. Rural:</strong> Urban residents tend to report higher loneliness.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💔</span> <strong>Risk Groups:</strong> Loneliness common among widowed/divorced individuals and those with chronic diseases.</li>
-                </ul>
-                <p class="mt-4 text-[#5A5A52] italic">"These patterns mirror global trends, where social isolation has become an emerging health risk comparable to traditional risk factors."</p>
-            </div>
-        </section>
-
-        <section id="health-effects" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Health Effects of Social Connection</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Strong social relationships are powerful determinants of health, impacting mortality, cardiometabolic health, mental well-being, and even cancer survival. Conversely, loneliness and social isolation carry significant health risks.</p>
-            </div>
-            <div class="space-y-4 max-w-3xl mx-auto">
-                <div class="bg-white rounded-xl shadow-md">
-                    <div class="accordion-header p-6 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-gray-800">Mortality and Cardiometabolic Health</h3>
-                        <span class="text-2xl transform transition-transform duration-300">▼</span>
-                    </div>
-                    <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
-                            <li>Stronger social relationships: <strong class="text-[#85A885]">50% greater probability of survival</strong> (comparable to quitting smoking).</li>
-                            <li>Loneliness/social isolation: Increased incidence of cardiovascular disease, stroke, hypertension (via behavioral and biological pathways).</li>
-                            <li>Persistent loneliness: <strong class="text-red-700">Two-fold higher risk</strong> of developing type 2 diabetes (adjusted OR 2.19).</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md">
-                    <div class="accordion-header p-6 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-gray-800">Mental Health</h3>
-                        <span class="text-2xl transform transition-transform duration-300">▼</span>
-                    </div>
-                    <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
-                            <li>Loneliness strongly linked to depression and anxiety.</li>
-                            <li>Often lonely adults: <strong class="text-red-700">More than twice the risk</strong> of developing new-onset depressive disorders (pooled OR 2.33).</li>
-                            <li>Higher rates of cognitive decline and dementia.</li>
-                            <li>Mental health effects amplify physical health risks (impaired sleep, increased inflammation, reduced adherence).</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md">
-                    <div class="accordion-header p-6 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-gray-800">Cancer Survival</h3>
-                        <span class="text-2xl transform transition-transform duration-300">▼</span>
-                    </div>
-                    <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
-                            <li>Higher perceived social support: Significantly better survival in gastrointestinal cancers.</li>
-                            <li>Good social support: <strong class="text-[#85A885]">56% reduction in mortality risk</strong> (HR 0.44) compared to low support.</li>
-                            <li>Stronger social relationships may enhance immune surveillance and treatment adherence.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="assessment" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Assessment of Social Connection and Loneliness</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Effective interventions begin with accurate assessment. Validated tools and clinical inquiry are essential to identify individuals at risk of loneliness and social isolation.</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Assessment Tools & Practices</h3>
-                <ul class="list-none space-y-4 text-[#5A5A52]">
-                    <li class="flex items-start"><span class="text-xl mr-3">📝</span> <strong>UCLA Loneliness Scale (Version 3):</strong> Validated, 20-item tool assessing subjective feelings of loneliness and social isolation. High internal consistency (Cronbach’s alpha 0.89-0.94) and good test-retest reliability (r = 0.73).</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">📏</span> <strong>Other tools:</strong> Three-Item Loneliness Scale, Social Network Index.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> <strong>Clinical Inquiry:</strong> Inquire about living arrangements, frequency of social interactions, participation in communal activities, and digital connectivity.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="interventions" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Evidence-Based Interventions for Social Connection</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Various evidence-based strategies, from psychological therapies to lifestyle modifications and innovative approaches, can effectively reduce loneliness and improve social connection.</p>
-            </div>
-            <div class="space-y-4 max-w-3xl mx-auto">
-                <div class="bg-white rounded-xl shadow-md">
-                    <div class="accordion-header p-6 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-gray-800">Connection Prescription (FITT Framework)</h3>
-                        <span class="text-2xl transform transition-transform duration-300">▼</span>
-                    </div>
-                    <div class="accordion-content px-6">
-                        <p class="text-[#5A5A52]">Analogous to exercise prescriptions, social connection can be prescribed using the FITT framework:</p>
-                        <ul class="list-disc list-inside space-y-2 mt-2">
-                            <li><strong>F</strong>requency: Number of interactions per week.</li>
-                            <li><strong>I</strong>ntensity: Emotional depth.</li>
-                            <li><strong>T</strong>ype: E.g., family, friends, community groups, volunteer activities.</li>
-                            <li><strong>T</strong>ime: Duration of each interaction.</li>
-                        </ul>
-                        <p class="mt-2">Encourage patients to invest time in meaningful relationships and community engagement (e.g., 2 quality interactions/week, 1 community event/month).</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md">
-                    <div class="accordion-header p-6 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-gray-800">Psychological and Social Interventions</h3>
-                        <span class="text-2xl transform transition-transform duration-300">▼</span>
-                    </div>
-                    <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
-                            <li><strong>Group-based Cognitive-Behavioral Therapy (CBT):</strong> Reduces loneliness by challenging negative thoughts and promoting social skills (small but significant reduction in loneliness). Internet-delivered CBT also beneficial.</li>
-                            <li><strong>Motivational Interviewing (MI):</strong> Enhances readiness to engage socially by resolving ambivalence and aligning social goals with personal values.</li>
-                            <li><strong>Social Prescribing:</strong> Links individuals to community resources (hobby clubs, exercise groups, volunteering, education). Improves wellbeing and reduces healthcare utilization.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md">
-                    <div class="accordion-header p-6 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-gray-800">Lifestyle Interventions Supporting Social Connection</h3>
-                        <span class="text-2xl transform transition-transform duration-300">▼</span>
-                    </div>
-                    <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
-                            <li><strong>Physical Activity:</strong> Group exercise classes (Tai Chi, dance, cycling) integrate movement with social interaction; improves mood/cognition.</li>
-                            <li><strong>Sleep and Stress Management:</strong> Enhance emotional regulation, promoting positive interactions.</li>
-                            <li><strong>Nutrition:</strong> Shared meals and cooking classes encourage social bonding; leverage traditional Taiwanese communal dining.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md">
-                    <div class="accordion-header p-6 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold text-gray-800">Innovative Approaches</h3>
-                        <span class="text-2xl transform transition-transform duration-300">▼</span>
-                    </div>
-                    <div class="accordion-content px-6">
-                        <ul class="list-disc list-inside space-y-2 text-[#5A5A52]">
-                            <li><strong>Digital Connections:</strong> Social networking, messaging apps (maintain relationships across distances). Caution: avoid excessive digital engagement without genuine interaction.</li>
-                            <li><strong>Companion Robots and Pets:</strong> Explored to reduce loneliness among older adults; pilot studies show mood/engagement improvements.</li>
-                            <li><strong>Nature-Based Interventions:</strong> Group horticultural therapy, community gardening programs provide social interaction and stress reduction. Particularly suited to Taiwan’s rural and indigenous communities.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="implementation-taiwan" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Implementation in Taiwan: Cultural and Policy Considerations</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Successful implementation of social connection interventions in Taiwan requires honoring cultural values, integrating into healthcare, and fostering supportive policies and community initiatives.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Cultural Adaptation <span class="ml-2 text-3xl">🎎</span></h3>
-                    <ul class="list-none space-y-3 text-[#5A5A52]">
-                        <li class="flex items-start"><span class="text-xl mr-3">👨‍👩‍👧‍👦</span> <strong>Cultural Values:</strong> Honor collectivism, filial piety, respect for elders (e.g., intergenerational programs).</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🙏</span> <strong>Religious/Spiritual Activities:</strong> Temple volunteering, meditation groups as sources of social support.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">💼</span> <strong>Workplace Interventions:</strong> Address betel nut chewing and high workloads among blue-collar workers (group exercise, support groups, team-building).</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Healthcare Integration & Policy <span class="ml-2 text-3xl">🏥</span></h3>
-                    <ul class="list-none space-y-3 text-[#5A5A52]">
-                        <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> <strong>Clinician Role:</strong> Incorporate social connection assessment into routine visits, refer to interventions.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">📋</span> <strong>Training:</strong> Equip providers with motivational interviewing and social prescribing skills.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3"> EHR</span> <strong>Electronic Health Records:</strong> Include fields for social support assessment and referrals.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🤝</span> <strong>Multidisciplinary Teams:</strong> Social workers, psychologists, community health workers for comprehensive approach.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">🏘️</span> <strong>Policy Initiatives:</strong> Promote age-friendly communities, accessible public transport, safe communal spaces.</li>
-                        <li class="flex items-start"><span class="text-xl mr-3">📢</span> <strong>Public Awareness:</strong> Campaigns and educational curricula on importance of social connection.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="conclusion-takehome" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">Conclusion & Take-Home Messages</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Positive social connections are fundamental to health and wellbeing, significantly reducing mortality and morbidity. Loneliness and social isolation are prevalent in Taiwan, making culturally tailored interventions and supportive policies essential for building cohesive communities.</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-                <ul class="list-none space-y-4 text-[#5A5A52]">
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Social connections improve survival:</strong> Strong social relationships increase the likelihood of survival by about 50%.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Loneliness is common in Taiwan:</strong> About 9-20% of older adults live alone, and 21% report feeling lonely.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Loneliness increases disease risk:</strong> Persistent loneliness doubles the risk of type 2 diabetes and substantially increases the risk of new-onset depression.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Assess and monitor:</strong> Use validated tools like the UCLA Loneliness Scale to assess social connection.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Prescribe connection:</strong> Encourage patients to schedule regular meaningful interactions and participate in group activities.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Use evidence-based interventions:</strong> Group-based CBT and internet-delivered interventions reduce loneliness; social prescribing and motivational interviewing can enhance engagement.</li>
-                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> <strong>Tailor to culture:</strong> Incorporate Taiwanese cultural values, intergenerational programs, and community resources when designing interventions.</li>
-                </ul>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-white mt-16 py-6 border-t">
-        <div class="container mx-auto px-6 text-center text-gray-500">
-            <p>Source: Chapter 9: Positive Social Connection (Fictionalized Data for Demonstration)</p>
-            <p class="text-sm mt-2">&copy; 2025 Interactive Report. All rights reserved.</p>
+        <h1>Chapter 9: Positive Social Connection</h1>
+        
+        <div class="content">
+            <h2>Introduction</h2>
+            <p>This chapter explores positive social connection in the context of lifestyle medicine and its application in Taiwan.</p>
+            
+            <h2>Key Concepts</h2>
+            <p>Content for this chapter will cover the fundamental principles and practical applications of positive social connection within Taiwan's healthcare system.</p>
+            
+            <h2>Summary</h2>
+            <p>This chapter provides insights into implementing positive social connection strategies in the Taiwanese context.</p>
         </div>
-    </footer>
-
-    <div id="physiologicalMechanismsModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3 id="physiologicalMechanismsModalTitle" class="text-2xl font-bold text-[#6B7A5A] mb-4">Physiological Mechanisms of Social Connection</h3>
-            <div id="physiologicalMechanismsModalContent" class="text-[#5A5A52] space-y-3">
-                <p>Social connection influences health through several physiological pathways:</p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Positive Relationships:</strong> Reduce activation of the hypothalamic-pituitary-adrenal axis (HPA) and sympathetic nervous system, lowering cortisol and catecholamine levels. They also modulate immune function by reducing pro-inflammatory cytokines and increasing natural killer cell activity.</li>
-                    <li><strong>Chronic Loneliness:</strong> Triggers inflammation, insulin resistance, and endothelial dysfunction, contributing to cardiometabolic and neurodegenerative disease risk.</li>
-                </ul>
-            </div>
+        
+        <div class="nav">
+            <a href="index.html">← Back to Home</a>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    const icon = header.querySelector('span:last-child');
-                    
-                    document.querySelectorAll('.accordion-content.open').forEach(openContent => {
-                        if (openContent !== content) {
-                            openContent.classList.remove('open');
-                            openContent.previousElementSibling.querySelector('span:last-child').classList.remove('rotate-180');
-                        }
-                    });
-
-                    content.classList.toggle('open');
-                    icon.classList.toggle('rotate-180');
-                });
-            });
-
-            const physiologicalMechanismsModal = document.getElementById('physiologicalMechanismsModal');
-            const openPhysiologicalMechanismsModalBtn = document.getElementById('openPhysiologicalMechanismsModal');
-            const closePhysiologicalMechanismsModalBtn = physiologicalMechanismsModal.querySelector('.close-button');
-
-            openPhysiologicalMechanismsModalBtn.addEventListener('click', () => {
-                physiologicalMechanismsModal.style.display = 'flex';
-            });
-
-            closePhysiologicalMechanismsModalBtn.addEventListener('click', () => {
-                physiologicalMechanismsModal.style.display = 'none';
-            });
-
-            window.addEventListener('click', (event) => {
-                if (event.target === physiologicalMechanismsModal) {
-                    physiologicalMechanismsModal.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>

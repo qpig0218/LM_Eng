@@ -3,323 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Report: Lifestyle Medicine in Taiwan</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
-    <!-- Application Structure Plan: A three-section narrative scrolling experience (The Challenge, The Intervention, The Impact). This linear storytelling approach guides the user logically from problem to solution to benefits, making complex information highly digestible. Interactivity (clickable pillars, animated charts) is embedded within each section to encourage exploration without disrupting the primary flow. This design was chosen for its clarity, educational effectiveness, and strong narrative guidance, which is ideal for presenting a strategic health report. -->
-    <!-- Visualization & Content Choices: 
-        - Challenge Section: Goal is to inform on the scale of the problem. Donut chart for mortality proportion (77%) offers immediate visual impact. Bar chart for CVD trend shows change over time clearly. Stat cards for prevalence provide quick, memorable numbers. (Library: Chart.js)
-        - Intervention Section: Goal is to organize and explain the solution. Interactive HTML/CSS grid for the six pillars. A click-to-reveal interaction was chosen to keep the main interface clean while allowing users to delve into details as they wish, promoting active engagement.
-        - Impact Section: Goal is to demonstrate effectiveness. Animated counters for key metrics (+7.13 years, -28.12% costs) create a "wow" factor. A horizontal bar chart provides a direct, easy-to-understand visual comparison of the outcomes. (Library: Chart.js) -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>Lifestyle Medicine in Taiwan</title>
     <style>
         body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #F2F0EC;
-            color: #3a3a3a;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-                max-height: 400px;
-            }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
         }
-        .pillar-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
         }
-        .pillar-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .chapter-list {
+            list-style-type: none;
+            padding: 0;
         }
-        .pillar-detail {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        .chapter-list li {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007cba;
+            border-radius: 5px;
         }
-        .pillar-detail.open {
-            max-height: 200px;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+        .chapter-list a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
         }
-        .nav-tab {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #E8E4DF 0%, #D4CECC 100%);
-            border: 2px solid transparent;
-            box-shadow: 0 2px 8px rgba(107, 122, 90, 0.1);
-            transition: all 0.3s ease;
+        .chapter-list a:hover {
+            color: #007cba;
         }
-        .nav-tab:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(107, 122, 90, 0.2);
-            background: linear-gradient(135deg, #6B7A5A 0%, #85A885 100%);
-            border-color: #B5858A;
-        }
-        .nav-tab.active {
-            background: linear-gradient(135deg, #6B7A5A 0%, #85A885 100%);
-            box-shadow: 0 4px 16px rgba(107, 122, 90, 0.3);
-            border-color: #B5858A;
-        }
-        .nav-tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        .nav-tab:hover::before {
-            left: 100%;
+        .intro {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
         }
     </style>
 </head>
-<body class="antialiased">
-
-    <header>
-        <div class="container">
-            <nav class="mb-4">
-                <div class="nav-container">
-                    <a href="Chapter 1.html" class="nav-tab active">
-                        📊 Chapter 1: Overview
-                    </a>
-                    <a href="Chapter 2.html" class="nav-tab">
-                        🔍 Chapter 2: Assessment Tools
-                    </a>
-                    <a href="Chapter 3.html" class="nav-tab">
-                        🧬 Chapter 3: Biomarkers
-                    </a>
-                    <a href="Chapter 4.html" class="nav-tab">
-                        🥗 Chapter 4: Healthy Eating
-                    </a>
-                    <a href="Chapter 5.html" class="nav-tab">
-                        🏃 Chapter 5: Physical Activity
-                    </a>
-                    <a href="Chapter 6.html" class="nav-tab">
-                        😴 Chapter 6: Restorative Sleep
-                    </a>
-                    <a href="Chapter 7.html" class="nav-tab">
-                        🧘 Chapter 7: Stress Management
-                    </a>
-                    <a href="Chapter 8.html" class="nav-tab">
-                        🚭 Chapter 8: Risky Substances
-                    </a>
-                    <a href="Chapter 9.html" class="nav-tab">
-                        🤝 Chapter 9: Social Connection
-                    </a>
-                    <a href="Chapter 10.html" class="nav-tab">
-                        💺 Chapter 10: Sedentary Behaviors
-                    </a>
-                    <a href="Chapter 11.html" class="nav-tab">
-                        🌙 Chapter 11: Shift Work
-                    </a>
-                </div>
-            </nav>
-            <!-- Title -->
-            <div class="title-container">
-                <h1>Taiwan Expert Consensus on Lifestyle Medicine: A Culturally Adapted Approach to Holistic Health</h1>
-                <p class="subtitle">An interactive summary of key findings and impacts.</p>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
+<body>
+    <div class="container">
+        <h1>Lifestyle Medicine in Taiwan</h1>
         
-        <section id="challenge" class="mb-16">
-            <div class="section-header">
-                <h2>The Escalating Burden of Chronic Disease</h2>
-                <p class="section-description">This section illustrates the significant public health challenge Taiwan faces due to chronic diseases. The following visualizations present key statistics on mortality and prevalence, providing context for the urgent need for effective interventions.</p>
-            </div>
-            <div class="grid grid-cols-1 grid-md-2 grid-lg-3">
-                <div class="card">
-                    <h3>Mortality from Chronic Disease</h3>
-                    <div class="chart-container">
-                        <div style="background: conic-gradient(var(--morandi-dusty-rose) 0% 77%, var(--morandi-warm-gray) 77% 100%); border-radius: 50%; width: 200px; height: 200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: white;">77%</div>
-                    </div>
-                    <p class="mt-4">Chronic diseases are the leading cause of death, highlighting a critical area for public health focus.</p>
-                </div>
-                <div class="card">
-                    <h3>Prevalence in Older Adults</h3>
-                    <div class="space-y-6 mt-4">
-                        <div class="stat-card" style="background: linear-gradient(135deg, #F0E8E8 0%, var(--morandi-warm-gray) 100%);">
-                            <div class="stat-number stat-blue">80%</div>
-                            <p style="color: var(--morandi-dusty-rose);">of individuals aged 54+ have at least one chronic condition.</p>
-                        </div>
-                        <div class="stat-card" style="background: linear-gradient(135deg, #E8F0E8 0%, var(--morandi-warm-gray) 100%);">
-                            <div class="stat-number stat-teal">70%</div>
-                            <p style="color: var(--morandi-sage-light);">of individuals aged 65+ have two or more chronic conditions.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>Rising Cardiovascular Disease (CVD)</h3>
-                     <div class="chart-container">
-                        <div style="display: flex; justify-content: space-around; align-items: end; height: 200px; margin: 0 auto;">
-                            <div style="background: var(--morandi-dusty-rose); width: 60px; height: 120px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; border-radius: 5px 5px 0 0;">2010</div>
-                            <div style="background: var(--morandi-sage-light); width: 60px; height: 140px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; border-radius: 5px 5px 0 0;">2023</div>
-                        </div>
-                        <p style="text-align: center; margin-top: 1rem; font-weight: bold;">9.6% Increase in CVD Deaths</p>
-                    </div>
-                    <p class="mt-4">CVD deaths have shown a significant increase, underscoring the growing threat.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="intervention" class="mb-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">The Intervention: Foundational Pillars of Health</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Lifestyle Medicine offers a proactive, evidence-based solution. It is built upon six core pillars that address the root causes of chronic illness. Click on each pillar to learn more about its role in promoting long-term health and well-being.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <div class="pillar-container">
-                    <div class="pillar-card bg-white p-6 rounded-xl shadow-md cursor-pointer flex items-center" data-target="pillar-1">
-                        <span class="text-3xl mr-4">🥗</span>
-                        <h3 class="text-xl font-semibold text-gray-800">Healthy Eating</h3>
-                    </div>
-                    <div id="pillar-1" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-[#5A5A52]">Emphasizes a whole-food, plant-predominant diet, rich in fiber and nutrients, while minimizing processed foods, oils, and animal fats to prevent and reverse chronic disease.</p>
-                    </div>
-                </div>
-
-                <div class="pillar-container">
-                    <div class="pillar-card bg-white p-6 rounded-xl shadow-md cursor-pointer flex items-center" data-target="pillar-2">
-                        <span class="text-3xl mr-4">🏃</span>
-                        <h3 class="text-xl font-semibold text-gray-800">Physical Activity</h3>
-                    </div>
-                    <div id="pillar-2" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-[#5A5A52]">Includes regular physical activity customized to individual ability. Aim for at least 150 minutes of moderate-intensity exercise per week to improve cardiovascular health and metabolic function.</p>
-                    </div>
-                </div>
-
-                <div class="pillar-container">
-                    <div class="pillar-card bg-white p-6 rounded-xl shadow-md cursor-pointer flex items-center" data-target="pillar-3">
-                        <span class="text-3xl mr-4">😴</span>
-                        <h3 class="text-xl font-semibold text-gray-800">Restorative Sleep</h3>
-                    </div>
-                    <div id="pillar-3" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-[#5A5A52]">Focuses on obtaining adequate quantity and quality of sleep (typically 7-9 hours for adults) to support cognitive function, hormonal balance, and immune system health.</p>
-                    </div>
-                </div>
-
-                <div class="pillar-container">
-                    <div class="pillar-card bg-white p-6 rounded-xl shadow-md cursor-pointer flex items-center" data-target="pillar-4">
-                        <span class="text-3xl mr-4">🧘</span>
-                        <h3 class="text-xl font-semibold text-gray-800">Stress Management</h3>
-                    </div>
-                    <div id="pillar-4" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-[#5A5A52]">Involves techniques like mindfulness, meditation, and yoga to manage chronic stress, which is a key contributor to inflammation and various chronic conditions.</p>
-                    </div>
-                </div>
-
-                <div class="pillar-container">
-                    <div class="pillar-card bg-white p-6 rounded-xl shadow-md cursor-pointer flex items-center" data-target="pillar-5">
-                        <span class="text-3xl mr-4">🚭</span>
-                        <h3 class="text-xl font-semibold text-gray-800">Avoidance of Risky Substances</h3>
-                    </div>
-                    <div id="pillar-5" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-[#5A5A52]">Encourages cessation of tobacco use and moderation or avoidance of alcohol and other harmful substances that directly contribute to disease risk.</p>
-                    </div>
-                </div>
-
-                <div class="pillar-container">
-                    <div class="pillar-card bg-white p-6 rounded-xl shadow-md cursor-pointer flex items-center" data-target="pillar-6">
-                        <span class="text-3xl mr-4">🧑‍🤝‍🧑</span>
-                        <h3 class="text-xl font-semibold text-gray-800">Positive Social Connections</h3>
-                    </div>
-                    <div id="pillar-6" class="pillar-detail bg-gray-50 rounded-b-xl px-6">
-                        <p class="text-[#5A5A52]">Promotes strong, supportive social networks, which are crucial for mental and emotional resilience and have been linked to improved health outcomes and longevity.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="impact">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-[#6B7A5A] mb-2">The Transformative Impact</h2>
-                <p class="max-w-3xl mx-auto text-gray-600">Implementing Lifestyle Medicine yields significant, measurable benefits for both individuals and the healthcare system. The data below quantifies the positive changes in life expectancy and cost reduction, demonstrating its value as a public health strategy.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Outcomes</h3>
-                    <div class="space-y-8">
-                        <div>
-                            <p class="text-2xl text-gray-600">Increased Life Expectancy</p>
-                            <div id="lifeExpectancyCounter" class="text-6xl font-bold text-teal-500 my-2">0</div>
-                            <p class="text-2xl text-gray-600">Years</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl text-gray-600">Reduction in Health Costs</p>
-                            <div id="costReductionCounter" class="text-6xl font-bold text-red-500 my-2">0</div>
-                            <p class="text-2xl text-gray-600">%</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Comparative Impact Analysis</h3>
-                    <div class="chart-container" style="max-width: 100%; height: 400px;">
-                        <canvas id="impactChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>Source: Taiwan Expert Consensus on Lifestyle Medicine (Fictionalized Data for Demonstration)</p>
-            <p style="font-size: 0.875rem; margin-top: 0.5rem;">&copy; 2025 Interactive Report. All rights reserved.</p>
+        <div class="intro">
+            <p>Welcome to the Lifestyle Medicine Taiwan resource. This site provides comprehensive information about lifestyle medicine principles and their application in the Taiwanese healthcare context.</p>
         </div>
-    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            const pillarCards = document.querySelectorAll('.pillar-card');
-            pillarCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const targetId = card.getAttribute('data-target');
-                    const detailElement = document.getElementById(targetId);
-                    
-                    document.querySelectorAll('.pillar-detail.open').forEach(openDetail => {
-                        if (openDetail !== detailElement) {
-                            openDetail.classList.remove('open');
-                        }
-                    });
+        <h2>Contents</h2>
+        <ul class="chapter-list">
+            <li><a href="Chapter 2.html">Chapter 2: Lifestyle Medicine Assessment Tools</a></li>
+            <li><a href="Chapter 3.html">Chapter 3: Physiological Parameters and Biomarkers</a></li>
+            <li><a href="Chapter 4.html">Chapter 4: Healthy Eating</a></li>
+            <li><a href="Chapter 5.html">Chapter 5: Physical Activity</a></li>
+            <li><a href="Chapter 6.html">Chapter 6: Restorative Sleep</a></li>
+            <li><a href="Chapter 7.html">Chapter 7: Stress Management</a></li>
+            <li><a href="Chapter 8.html">Chapter 8: Avoidance of Risky Substances</a></li>
+            <li><a href="Chapter 9.html">Chapter 9: Positive Social Connection</a></li>
+            <li><a href="Chapter 10.html">Chapter 10: Sedentary Behaviors</a></li>
+            <li><a href="Chapter 11.html">Chapter 11: Impact of Shift Work on Health</a></li>
+        </ul>
 
-                    detailElement.classList.toggle('open');
-                });
-            });
-
-            // Simple counter animation for impact section
-            const lifeExpectancyEl = document.getElementById('lifeExpectancyCounter');
-            const costReductionEl = document.getElementById('costReductionCounter');
-            
-            if (lifeExpectancyEl && costReductionEl) {
-                const impactSection = document.getElementById('impact');
-
-                const observer = new IntersectionObserver((entries) => {
-                    if (entries[0].isIntersecting) {
-                        lifeExpectancyEl.innerHTML = `+7.13`;
-                        costReductionEl.innerHTML = `-28.12`;
-                        observer.disconnect();
-                    }
-                }, { threshold: 0.5 });
-
-                observer.observe(impactSection);
-            }
-        });
-    </script>
+        <h2>About Lifestyle Medicine</h2>
+        <p>Lifestyle medicine is an evidence-based approach to preventing, treating, and reversing chronic diseases by addressing their root causes through lifestyle changes. The six pillars of lifestyle medicine include:</p>
+        <ul>
+            <li>Healthy Eating</li>
+            <li>Regular Physical Activity</li>
+            <li>Restorative Sleep</li>
+            <li>Stress Management</li>
+            <li>Avoidance of Risky Substances</li>
+            <li>Positive Social Connection</li>
+        </ul>
+    </div>
 </body>
 </html>
