@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Report: Healthy Eating in Lifestyle Medicine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
+    <!-- Application Structure Plan: A multi-section, scrollable single-page application. The structure begins with an Introduction highlighting the problem and the importance of healthy eating, followed by sections on Foundational Principles, the Healthy Taiwanese Eating Approach (TEA), Nutritional Science, Cultural Integration, Practical Implementation, Barriers, Special Populations, and Future Directions. Interactive elements include expandable sections for detailed guidelines and a modal for the TEA core components, allowing users to explore information on demand. This design prioritizes a logical narrative flow, comprehensive content, and user engagement. -->
+    <!-- Visualization & Content Choices: 
+        - Introduction: Key obesity statistics for adults and children are presented as concise text with bold percentages for impact. Diabetes as a major concern is also highlighted. Traditional vs. Modern dietary influences are shown side-by-side with icons for visual clarity.
+        - Foundations of Healthy Eating: WHO guidelines and Taiwan MOHW Daily Food Guide principles are presented in an accordion-style interactive list (HTML/CSS/JS) for easy access to details. Dietary patterns and mechanisms are described in a clear textual block.
+        - Healthy Taiwanese Eating Approach (TEA): A dedicated section with an overview and a clickable card for "Core Components" that opens a modal (HTML/CSS/JS) to detail each component (plant-based, soy, aquatic, tea, whole grains/nuts/seeds). This allows a deep dive into TEA's specifics. Implementation Strategies are presented as bullet points.
+        - Nutritional Science Foundations: Sections for Macronutrients, Protein/Fat Sources, Micronutrients/Phytochemicals/Fiber, and Evidence-Based Patterns are presented as clear textual blocks with key takeaways highlighted.
+        - Cultural Integration: Textual section emphasizing the importance of traditional wisdom.
+        - Practical Implementation: Structured list of approaches for clinical settings.
+        - Addressing Common Barriers & Special Populations: Accordion-style sections (HTML/CSS/JS) to allow users to explore specific challenges and considerations for different groups.
+        - Integration with Other Pillars & Monitoring/Evaluation: Textual summaries with bullet points.
+        - Future Directions & Innovations: Bulleted list of emerging trends.
+        - Take-Home Messages: Concise bulleted list for quick review. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8f7f4;
+            color: #3a3a3a;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .accordion-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #f0f0f0;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            max-height: 400px; /* Adjusted for potentially longer content */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px; /* Wider for more content */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+        }
+        .card-button {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white py-6 shadow-sm">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#003366]">Healthy Eating: A Cornerstone of Lifestyle Medicine</h1>
+            <p class="mt-2 text-lg text-gray-600">Navigating Taiwan's dietary landscape for optimal health.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="introduction" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Introduction: Taiwan's Dietary Transformation</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Healthy eating is fundamental to lifestyle medicine, profoundly impacting metabolic health, body composition, and chronic disease risk. Taiwan faces a growing epidemic of diet-related non-communicable diseases, making dietary habits a critical public health priority.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+                <div class="bg-white p-6 rounded-xl shadow-md h-full">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Taiwan's Obesity & Diabetes Burden</h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">🧍</span> Adults: <strong class="text-red-700">Over 50%</strong> overweight or obese.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">👦</span> Children: <strong class="text-red-700">~33% boys, ~25% girls</strong> overweight or obese.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🍬</span> Diabetes: Major cause of morbidity, mortality, and healthcare expenditures.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md h-full md:col-span-2 lg:col-span-2">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Dietary Transitions in Taiwan</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-medium text-gray-700 mb-2 flex items-center"><span class="text-2xl mr-2">🌿</span> Traditional Diet (Healthful Aspects)</h4>
+                            <ul class="list-none space-y-2 text-gray-600">
+                                <li class="flex items-center"><span class="text-xl mr-2">🥦</span> Abundant vegetables</li>
+                                <li class="flex items-center"><span class="text-xl mr-2">🍚</span> Soy products</li>
+                                <li class="flex items-center"><span class="text-xl mr-2">🐟</span> Seafood</li>
+                                <li class="flex items-center"><span class="text-xl mr-2">🍵</span> Tea</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-medium text-gray-700 mb-2 flex items-center"><span class="text-2xl mr-2">🍔</span> Modern Influences (Unhealthy Shifts)</h4>
+                            <ul class="list-none space-y-2 text-gray-600">
+                                <li class="flex items-center"><span class="text-xl mr-2">🍞</span> Refined grains</li>
+                                <li class="flex items-center"><span class="text-xl mr-2">🍟</span> Processed foods</li>
+                                <li class="flex items-center"><span class="text-xl mr-2">🥤</span> Sugar-sweetened beverages</li>
+                                <li class="flex items-center"><span class="text-xl mr-2">🌭</span> Western-style fast foods</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-700 italic">"Lifestyle medicine seeks to preserve the healthful aspects of traditional eating while integrating modern nutrition science to support population health."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="foundations" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Foundations of Healthy Eating in Lifestyle Medicine</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Healthy eating in lifestyle medicine emphasizes overall dietary patterns. This section outlines global guidelines and local recommendations, along with the physiological mechanisms that underpin their benefits.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Principles & Guidelines</h3>
+                    <div class="space-y-3">
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">WHO Dietary Recommendations</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>At least 400g of fruits and vegetables per day.</li>
+                                <li>Total fat <30% energy (saturated <10%, trans <1%).</li>
+                                <li>Free sugars <10% energy (ideally <5%).</li>
+                                <li>Salt intake <5g per day.</li>
+                                <li>Prioritize whole grains, legumes, nuts, seeds.</li>
+                            </ul>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Taiwan MOHW Daily Food Guide</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Divides foods into six groups (cereals/whole grains; protein-rich; dairy; vegetables; fruits; fats/oils/nuts) with recommended daily servings based on energy needs. Better adherence associated with 39% lower osteoporosis risk.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Dietary Patterns & Mechanisms</h3>
+                    <p class="text-gray-700 mb-4">Evidence-based patterns (e.g., Mediterranean, DASH, plant-predominant) consistently reduce chronic disease risk by:</p>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li><span class="text-xl mr-3">📈</span> Improving insulin sensitivity, lipid profiles, blood pressure.</li>
+                        <li><span class="text-xl mr-3">📉</span> Reducing systemic inflammation and oxidative stress.</li>
+                        <li><span class="text-xl mr-3">🦠</span> Supporting gut microbiota diversity.</li>
+                        <li><span class="text-xl mr-3">⚖️</span> Favorable modulation of satiety hormones.</li>
+                    </ul>
+                    <p class="mt-4 text-gray-700 italic">"High adherence to the Mediterranean diet is associated with 21-56% lower all-cause mortality."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tea-approach" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Healthy Taiwanese Eating Approach (TEA)</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">The TEA integrates traditional Taiwanese dietary practices with modern nutrition science, identifying patterns associated with longevity and cardiometabolic health. It's a culturally adapted model for healthier eating.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Concept and Evidence</h3>
+                    <p class="text-gray-700 mb-4">TEA emphasizes greater consumption of plant-based foods, soy products, aquatic foods, and tea, while discouraging processed meats, fried foods, sugary snacks, and beverages. It prefers boiling or steaming over deep-frying.</p>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">📉</span> Adherence to TEA: <strong class="text-teal-600">36% lower</strong> all-cause mortality risk.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">❤️</span> Adherence to TEA: <strong class="text-teal-600">48% lower</strong> cardiovascular death risk.</li>
+                    </ul>
+                    <button id="openTeaModal" class="mt-6 bg-[#003366] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#002244] transition-colors duration-300 card-button">Explore Core Components</button>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Implementation Strategies</h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">🍽️</span> Assess current diets, cultural preferences, cooking skills.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📚</span> Emphasize cultural relevance of TEA, recipe modifications.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">👨‍👩‍👧‍👦</span> Family engagement is critical for consistent household changes.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🏘️</span> Community initiatives (schools, workplaces, restaurants) for accessibility.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📱</span> Digital tools and meal-tracking apps for reinforcement.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="nutrition-science" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Nutritional Science Foundations</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Modern nutrition science provides the evidence base for healthy eating principles. This section delves into the quality of macronutrients, optimal protein and fat sources, and the crucial roles of micronutrients, phytochemicals, and fiber.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Macronutrients & Carbohydrate Quality</h3>
+                    <p class="text-gray-700 mb-4">Optimal diets balance macronutrients, emphasizing quality. Whole grains, vegetables, fruits, and legumes provide complex carbohydrates, fiber, vitamins, and minerals. High-quality carbohydrates improve glycemic control, lower cholesterol, and enhance satiety.</p>
+                    <p class="text-gray-700 italic">"Replacing refined white rice with brown rice or other whole grains can significantly improve nutrient intake in Taiwan."</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Protein & Fat Sources</h3>
+                    <p class="text-gray-700 mb-4">Adequate protein supports muscle, immune function, and satiety. TEA provides protein from seafood, soy products, legumes, and moderate poultry/eggs. Healthy fats from fish, nuts, seeds, and plant oils support cardiovascular health. Limiting saturated and avoiding trans fats are key.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md md:col-span-2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Micronutrients, Phytochemicals & Fiber</h3>
+                    <p class="text-gray-700 mb-4">Essential for metabolic and physiological functions. TEA's diverse ingredients ensure adequate intake. Phytochemicals (flavonoids, carotenoids, polyphenols) offer antioxidant/anti-inflammatory effects. Fiber supports digestive health, regulates blood glucose/lipid levels, and promotes satiety.</p>
+                </div>
+            </div>
+            <div class="mt-10 bg-white p-6 rounded-xl shadow-md max-w-5xl mx-auto">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Evidence-Based Dietary Patterns</h3>
+                <p class="text-gray-700 mb-4">Numerous studies support dietary patterns emphasizing plant-based foods, healthy fats, and minimal processing:</p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Mediterranean & DASH diets: Reduce cardiovascular events, hypertension, mortality.</li>
+                    <li>Plant-predominant diets: Lower stroke risk (Taiwanese cohorts).</li>
+                    <li>Whole grains, nuts, fish: Reduce cardiovascular disease and all-cause mortality.</li>
+                    <li>Conversely, high intake of sugar-sweetened beverages, processed meats, ultra-processed foods increases risk of diabetes, obesity, and mortality.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="cultural-integration" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Cultural Integration and Traditional Wisdom</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Successful healthy eating interventions in Taiwan require deep understanding and respect for traditional food culture, cooking practices, and dietary beliefs that have shaped eating patterns for generations.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+                <p class="text-gray-700 mb-4">Traditional Taiwanese cuisine reflects influences from various Chinese regions, indigenous traditions, and Japanese colonial heritage. Concepts from Traditional Chinese Medicine emphasize balance, seasonal eating, and the medicinal properties of foods.</p>
+                <ul class="list-none space-y-3 text-gray-700">
+                    <li class="flex items-start"><span class="text-xl mr-3">🍲</span> Many traditional cooking methods (steaming, stir-frying with minimal oil, soup preparation) align with healthy eating principles.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">👨‍👩‍👧‍👦</span> Seasonal eating, communal dining, and use of fermented foods/medicinal herbs can be integrated with modern nutrition science.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> Healthcare providers should recognize the social and cultural significance of food sharing and incorporate family/community contexts into dietary counseling.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="implementation-barriers-special" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Practical Implementation, Barriers & Special Populations</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Translating healthy eating principles into practice requires systematic approaches, while addressing common barriers and tailoring interventions to specific population needs.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Practical Implementation in Clinical Settings</h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">📝</span> Comprehensive dietary assessments (food frequency questionnaires).</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🎯</span> SMART goal setting for specific behaviors.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">💬</span> Motivational interviewing to identify intrinsic motivations.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🛒</span> Practical guidance: meal planning, shopping tips, cooking demos.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📊</span> Follow-up with subjective and objective measures (weight, BP, lipids, HbA1c).</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Addressing Common Barriers</h3>
+                    <div class="space-y-3">
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Time & Cost Constraints</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Mitigate with batch cooking, meal-prepping, simple recipes. Emphasize affordable staples and long-term healthcare savings.</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Limited Skills & Availability</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Address through cooking classes, instructional videos, community programs. Identify local farmers’ markets, community gardens.</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Cultural & Social Influences</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Respect preferences by modifying dishes, focusing on portion control. Teach assertive communication, offer healthier alternatives at gatherings.</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Conflicting Info & Medical Conditions</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Direct patients to authoritative sources. Ensure dietary recommendations are safe and appropriate for medical conditions/medications.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md md:col-span-2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Special Populations & Considerations</h3>
+                    <div class="space-y-3">
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Older Adults, Children, Pregnant/Lactating Women</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Tailor for diminished appetite, growth needs, increased energy/nutrient demands. Family involvement and cultural alignment are key.</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Chronic Diseases, Athletes, Vegetarians/Vegans</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Require modified macronutrients, higher energy/protein, specific nutrient monitoring (B12, iron, omega-3). TEA's emphasis on soy/nuts can help.</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Food Allergies/Intolerances, Low-Income Populations</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Need safe substitutions for nutritional adequacy. Low-income groups face financial/accessibility barriers, requiring community support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="integration-monitoring-future" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Integration, Monitoring & Future Directions</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Healthy eating interacts synergistically with other lifestyle pillars. Effective monitoring ensures accountability, while rapidly evolving nutrition science and technology promise innovative future approaches.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Integration with Other LM Pillars <span class="ml-2 text-3xl">🔗</span></h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">🏃</span> **Physical Activity:** Enhances insulin sensitivity, energy balance.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">😴</span> **Sleep:** Regulates appetite hormones, reduces cravings.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🧘</span> **Stress Management:** Reduces emotional eating, promotes mindful choices.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🤝</span> **Social Connections:** Offer support and accountability.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🚭</span> **Avoidance of Risky Substances:** Improves taste, nutrient absorption, metabolic health.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Monitoring & Evaluation <span class="ml-2 text-3xl">📊</span></h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">📝</span> **Dietary assessment tools:** Food diaries, 24-hour recalls, FFQs.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📏</span> **Anthropometric measures:** Weight, BMI, waist circumference, body composition.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🔬</span> **Physiological & biochemical markers:** BP, glucose, lipids, HbA1c, inflammatory markers.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🗣️</span> **Patient-reported outcomes:** Energy levels, sleep quality, mood.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md md:col-span-2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Future Directions & Innovations <span class="ml-2 text-3xl">🚀</span></h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">🧬</span> **Personalized nutrition:** Informed by genetics, metabolomics, microbiome.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📱</span> **Digital health technologies:** Real-time feedback, automated meal planning, remote coaching.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🌱</span> **Sustainable food systems:** Plant-based diets, reduced food waste, local agriculture.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🍵</span> **Functional foods & nutraceuticals:** From traditional Taiwanese ingredients.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🏛️</span> **Policy-level interventions:** Subsidies for healthy foods, taxes on sugary drinks.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">☯️</span> **TCM integration:** Combining Traditional Chinese Medicine concepts with modern nutrition science.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion-takehome" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Conclusion & Take-Home Messages</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Healthy eating is an indispensable pillar of lifestyle medicine with immense potential for preventing and managing chronic diseases in Taiwan. Culturally sensitive interventions are key to sustainable behavior change.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+                <ul class="list-none space-y-4 text-gray-700">
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Healthy eating is urgent in Taiwan: Over half of adults are overweight/obese; unhealthy diets contribute to rising chronic diseases.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> General guidelines emphasize plant-rich, minimally processed diets (WHO, MOHW).</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> The TEA pattern aligns tradition with science, associated with markedly lower all-cause and cardiovascular mortality in Taiwanese cohorts.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Evidence-based patterns (Mediterranean, DASH, plant-predominant) confirm benefits in reducing mortality, CVD, hypertension, and stroke risk.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Specific foods offer dose-dependent protection: Whole grains, nuts, fish reduce CVD and mortality.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Limit harmful foods: Sugar-sweetened beverages, processed meats, ultra-processed foods increase risk of diabetes, obesity, and mortality.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Cultural wisdom is an asset: Traditional cooking methods, seasonal eating, communal dining can support healthy eating.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Practical strategies are essential: Individualized assessments, goal setting, motivational interviewing, family/community engagement, digital tools.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Integration with other lifestyle factors maximizes benefits: Nutrition interacts synergistically with physical activity, sleep, stress management, social connections, and avoidance of risky substances.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-16 py-6 border-t">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>Source: Chapter 4: Healthy Eating (Fictionalized Data for Demonstration)</p>
+            <p class="text-sm mt-2">&copy; 2025 Interactive Report. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="teaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="teaModalTitle" class="text-2xl font-bold text-[#003366] mb-4">Healthy Taiwanese Eating Approach (TEA) - Core Components</h3>
+            <div id="teaModalContent" class="text-gray-700 space-y-3">
+                <p>The TEA pattern emphasizes greater consumption of certain food groups and cooking methods, while discouraging others:</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Plant-based foods:</strong> Vegetables, fruits, whole grains, nuts, seeds, legumes. Encourages at least five servings of vegetables and fruits per day, with emphasis on leafy greens, cruciferous vegetables, and brightly colored fruits.</li>
+                    <li><strong>Soy products:</strong> Tofu, tempeh, soy milk, soy nuts. Provide high-quality protein and isoflavones.</li>
+                    <li><strong>Aquatic foods:</strong> Fish and seafood. Deliver omega-3 fatty acids, iodine, and high-quality protein. Each 20g/day increase in fish consumption associated with 4% reduction in cardiovascular mortality.</li>
+                    <li><strong>Tea:</strong> Green tea, oolong tea, Pu-erh tea. Rich in polyphenols, providing antioxidants that may lower blood pressure and improve endothelial function.</li>
+                    <li><strong>Whole grains, nuts, and seeds:</strong> Supply fiber, micronutrients, unsaturated fats. High whole-grain intake associated with 16% reduction in CVD. Additional 28g/day of nuts associated with 29% lower coronary heart disease.</li>
+                </ul>
+                <p class="mt-2"><strong>Discouraged:</strong> Marbled or heavily processed meats, fried and high-fat foods, sugary snacks, sugar-sweetened beverages.</p>
+                <p><strong>Preferred Cooking Methods:</strong> Boiling or steaming over deep-frying.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('span:last-child');
+                    
+                    document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                        if (openContent !== content) {
+                            openContent.classList.remove('open');
+                            openContent.previousElementSibling.querySelector('span:last-child').classList.remove('rotate-180');
+                        }
+                    });
+
+                    content.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            const teaModal = document.getElementById('teaModal');
+            const openTeaModalBtn = document.getElementById('openTeaModal');
+            const closeTeaModalBtn = teaModal.querySelector('.close-button');
+
+            openTeaModalBtn.addEventListener('click', () => {
+                teaModal.style.display = 'flex';
+            });
+
+            closeTeaModalBtn.addEventListener('click', () => {
+                teaModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === teaModal) {
+                    teaModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

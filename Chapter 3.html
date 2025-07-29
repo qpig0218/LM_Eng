@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Report: Physiological Parameters and Biomarkers in Lifestyle Medicine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
+    <!-- Application Structure Plan: A multi-section, scrollable single-page application. The structure follows a logical progression: Introduction (context and importance), Definitions (physiological parameters and biomarkers), Assessment Framework (six domains with interactive details), Taiwan-Specific Considerations, Clinical Integration, and Future Directions. Interactive elements include expandable sections for detailed explanations and clickable cards for biomarker categories, allowing users to delve deeper into specific topics. This design prioritizes a clear narrative flow while offering rich, on-demand information. -->
+    <!-- Visualization & Content Choices: 
+        - Introduction: Key statistics on mortality risk (smoking, low fruit/veg) are presented as concise text with bold percentages for impact. Taiwan Biobank's role is highlighted with a clear textual summary.
+        - Physiological Parameters: List with clear headings and bullet points (HTML/CSS) for easy scanning.
+        - Biomarkers: Definition and categories are presented with an accordion-style interactive list (HTML/CSS/JS) to allow users to explore each category's significance.
+        - Sample Types & Digital Monitoring: Textual descriptions with clear headings (HTML/CSS) for comprehensive information.
+        - Biomarker Framework (Six Domains): Each domain is a clickable card (HTML/CSS/JS). Clicking a card opens a modal (HTML/CSS/JS) with detailed information about relevant biomarkers, their clinical significance, and Taiwan-specific considerations. This allows for deep dives into specific areas without cluttering the main page.
+        - Taiwan-Specific Considerations: Dedicated textual section with bullet points for key influencing factors.
+        - Clinical Implementation, Quality Assurance, Future Directions, Challenges, Conclusion, Take-Home Messages: Structured textual sections with bullet points (HTML/CSS) for clear, concise information. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8f7f4;
+            color: #3a3a3a;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .accordion-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #f0f0f0;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            max-height: 400px; /* Adjusted for potentially longer content */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px; /* Wider for more content */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+        }
+        .domain-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .domain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white py-6 shadow-sm">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#003366]">Physiological Parameters and Biomarkers in Lifestyle Medicine</h1>
+            <p class="mt-2 text-lg text-gray-600">Objective measurements for personalized health and preventive care.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="introduction" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Introduction: Quantifying Lifestyle Impact</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Lifestyle medicine (LM) integrates behavioral interventions with objective health measurements. Physiological parameters and biomarkers serve as quantitative windows into how lifestyle behaviors influence health, enabling clinicians to quantify risks, tailor interventions, and monitor outcomes.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white p-6 rounded-xl shadow-md h-full">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">The Need for Objective Measures</h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">🚬</span> Current smokers: <strong class="text-red-700">+33%</strong> higher all-cause mortality risk.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🍎</span> Low fruit/vegetable intake: <strong class="text-red-700">+43%</strong> increased cardiovascular mortality.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📊</span> Biomarkers provide objectively measured characteristics reflecting biological processes or intervention responses.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md h-full">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Taiwan's Research Infrastructure</h3>
+                    <p class="text-gray-700 mb-3">The Taiwan Biobank is a prospective study of <strong class="text-blue-600">>150,000 adults</strong> (20-70 years), collecting comprehensive phenotypic data through interviews, physical measurements, and biomarker analyses.</p>
+                    <p class="text-gray-700">Linking this data with the National Health Insurance database provides invaluable population-specific evidence to adapt international LM principles to local cultural practices, including betel-nut use, night-market dietary patterns, and long working hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="definitions" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Definitions: Physiological Parameters & Biomarkers</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Understanding the core concepts of physiological parameters and biomarkers is fundamental to their application in lifestyle medicine. This section defines these terms and categorizes them by their clinical significance.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Physiological Parameters</h3>
+                    <p class="text-gray-700 mb-4">Quantifiable traits reflecting the function of major body systems, typically non-invasive and suitable for routine monitoring.</p>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li><strong class="text-blue-600">Cardiovascular:</strong> Blood pressure, heart rate, heart-rate variability, vascular function.</li>
+                        <li><strong class="text-blue-600">Respiratory:</strong> Spirometry measures (FVC, FEV), oxygen saturation.</li>
+                        <li><strong class="text-blue-600">Metabolic:</strong> BMI, waist circumference, body composition, resting metabolic rate.</li>
+                        <li><strong class="text-blue-600">Neurological:</strong> Cognitive performance, autonomic nervous system balance, sleep architecture.</li>
+                        <li><strong class="text-blue-600">Musculoskeletal:</strong> Muscle strength, endurance, flexibility, bone density.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Biomarkers: Categories & Significance</h3>
+                    <p class="text-gray-700 mb-4">Objective evidence of physiological changes, informing risk stratification, monitoring responses, and predicting outcomes.</p>
+                    <div class="space-y-3">
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Susceptibility/Risk & Diagnostic</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Identify individuals at risk or confirm presence of disease (e.g., HbA1c for diabetes).</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Monitoring & Prognostic</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Track disease progression or response to treatment, and predict disease course (e.g., hs-CRP for cardiovascular events).</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Predictive & Pharmacodynamic/Response</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Identify individuals likely to respond to a specific intervention, and show biological response to an intervention.</p>
+                        </div>
+                        <div class="accordion-header p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <span class="font-semibold">Safety</span>
+                            <span class="text-xl transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="accordion-content px-3">
+                            <p class="text-gray-700">Assess potential adverse effects of an intervention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="measurement-methods" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Sample Types and Measurement Methodologies</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Accurate biomarker assessment relies on appropriate sample collection, rigorous assay validation, and increasingly, digital monitoring technologies. This section outlines the various methods used to obtain and analyze physiological and biochemical data.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Biological Specimens & Assay Validation</h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li><strong class="text-blue-600">Blood:</strong> Most common (lipids, glucose, HbA1c, cytokines, hormones).</li>
+                        <li><strong class="text-blue-600">Saliva/Hair:</strong> Non-invasive cortisol, steroid hormones (stress over time).</li>
+                        <li><strong class="text-blue-600">Urine:</strong> Kidney function, metabolic excretion.</li>
+                        <li><strong class="text-blue-600">Stool:</strong> Microbiome profiles.</li>
+                        <li><strong class="text-blue-600">Tissue Biopsies/Imaging:</strong> Structural/functional info (for specific indications due to invasiveness/cost).</li>
+                    </ul>
+                    <p class="mt-4 text-gray-700"><strong>Assay Validation:</strong> Requires stringent quality control, including analytical (precision, accuracy) and technical (sensitivity, specificity) validation, ensuring fit-for-purpose performance.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Digital Monitoring</h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li><strong class="text-blue-600">Wearable devices & mobile apps:</strong> Continuous monitoring of physical activity, sleep, etc.</li>
+                        <li><strong class="text-blue-600">Benefits:</strong> Objective data, real-time feedback.</li>
+                        <li><strong class="text-red-600">Challenges:</strong> Data privacy, device accuracy, digital literacy, need for sustained behavioral support.</li>
+                    </ul>
+                    <p class="mt-4 text-gray-700 italic">"Wearable devices alone provide limited behavior change without additional support."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="biomarker-framework" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Lifestyle Medicine Biomarker Framework: Six Key Domains</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">LMA integrates physiological parameters and biomarkers across six domains, aligning with the six pillars of lifestyle medicine. Click on each domain to explore the key markers and their clinical relevance.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md cursor-pointer domain-card" data-domain="biological-age">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Biological Age Assessment</h3>
+                    <p class="text-gray-600 text-sm">Reflects cumulative physiological wear and resilience.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md cursor-pointer domain-card" data-domain="nutrition-metabolic">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Nutrition & Metabolic Health</h3>
+                    <p class="text-gray-600 text-sm">Assessing dietary adequacy and metabolic function.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md cursor-pointer domain-card" data-domain="physical-fitness">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Physical Health & Fitness</h3>
+                    <p class="text-gray-600 text-sm">Predictors of morbidity and mortality.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md cursor-pointer domain-card" data-domain="inflammation-immune">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Inflammation & Immune Function</h3>
+                    <p class="text-gray-600 text-sm">Linking unhealthy lifestyles to chronic diseases.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md cursor-pointer domain-card" data-domain="stress-response">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Stress Response Assessment</h3>
+                    <p class="text-gray-600 text-sm">Evaluating the impact of chronic psychological stress.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md cursor-pointer domain-card" data-domain="sleep-quality">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sleep Quality Assessment</h3>
+                    <p class="text-gray-600 text-sm">Understanding the impact of sleep disturbances.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="taiwan-considerations" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Taiwan-Specific Considerations</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Implementing LM biomarker assessment in Taiwan requires careful consideration of unique genetic, environmental, and cultural factors to ensure accurate interpretation and effective interventions.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+                <ul class="list-none space-y-4 text-gray-700">
+                    <li class="flex items-start"><span class="text-xl mr-3">🧬</span> **Genetic Factors:** Predominantly Han Chinese population with distinct subgroups; may influence biomarker reference ranges.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🏭</span> **Environmental Exposures:** Air pollution, industrial chemicals, high ambient temperatures affecting oxidative stress and inflammatory markers.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3"> cultural_practices</span> **Cultural Practices:** Betel-nut chewing, night-market dietary habits, long working hours impacting metabolic, stress, and sleep biomarkers.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📱</span> **Digital Divide:** High smartphone penetration vs. disparities in digital literacy and access in rural areas and older adults.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">📚</span> **Local Data:** Initiatives like Taiwan Biobank and SEBAS provide locally relevant normative data for accurate interpretation.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="implementation-future" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Clinical Implementation & Future Directions</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Effective integration of biomarkers into patient care and continuous innovation are crucial for advancing personalized lifestyle medicine.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Clinical Integration & Quality <span class="ml-2 text-3xl">✅</span></h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">🔬</span> **Test Selection:** Prioritize biomarkers with established validity, considering patient characteristics.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📈</span> **Serial Measurements:** Allow trending over time; small changes can be meaningful.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">💬</span> **Communication:** Emphasize actionable insights, empower patients.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🤝</span> **Interdisciplinary Collaboration:** Enhance interpretation and holistic care.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">⚙️</span> **Quality Assurance:** Address pre-analytical factors, analytical control, post-analytical reporting.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">Future Directions & Emerging Tech <span class="ml-2 text-3xl">🚀</span></h3>
+                    <ul class="list-none space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">🧪</span> **Point-of-Care Testing:** Rapid, decentralized measurement for immediate feedback.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">⌚</span> **Continuous Monitoring:** Wearable sensors for real-time tracking of physiological responses.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🧬</span> **Multi-omics Approaches:** Genomics, proteomics, metabolomics for comprehensive insights.</li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🤖</span> **AI & Machine Learning:** Integrate complex data to predict risk and tailor recommendations.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion-takehome" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Conclusion & Take-Home Messages</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Physiological parameters and biomarkers are fundamental to evidence-based lifestyle medicine, enabling objective assessment and personalized interventions. Here are the key takeaways from this chapter.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+                <ul class="list-none space-y-4 text-gray-700">
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Physiological parameters and biomarkers translate lifestyle behaviors into objective measures, enabling personalized and evidence-based interventions.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Biomarkers are categorized as susceptibility, diagnostic, monitoring, prognostic, predictive, pharmacodynamic, and safety markers.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Accurate biomarker measurement requires rigorous analytical validation and quality assurance.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Telomere length and epigenetic clocks reflect biological aging and are influenced by smoking, insomnia, and physical activity.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> HbA1c and lipid profiles assess metabolic health; elevated HbA1c predicts mortality in acute coronary syndrome.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> High cardiorespiratory fitness and muscular strength reduce mortality risk.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> hs-CRP and IL-6 are key inflammatory biomarkers predicting cardiovascular events.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Cortisol, HRV, and DHEA/cortisol ratio indicate stress responses; chronic stress elevates pro-inflammatory cytokines.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Melatonin and BDNF provide insights into sleep quality; insomnia with short sleep duration lowers BDNF levels.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> Taiwan’s unique genetic structure, cultural practices, and robust biobank resources necessitate population-specific interpretation and offer opportunities for research.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-16 py-6 border-t">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>Source: Chapter 3: Physiological Parameters and Biomarkers (Fictionalized Data for Demonstration)</p>
+            <p class="text-sm mt-2">&copy; 2025 Interactive Report. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="domainModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modalDomainTitle" class="text-2xl font-bold text-[#003366] mb-4"></h3>
+            <div id="modalDomainContent" class="text-gray-700 space-y-3"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('span:last-child');
+                    
+                    document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                        if (openContent !== content) {
+                            openContent.classList.remove('open');
+                            openContent.previousElementSibling.querySelector('span:last-child').classList.remove('rotate-180');
+                        }
+                    });
+
+                    content.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            const domainData = {
+                'biological-age': {
+                    title: 'Biological Age Assessment',
+                    content: `
+                        <p>Biological age, distinct from chronological age, reflects cumulative physiological wear and resilience. Key markers include:</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Telomere length:</strong> Shortens with cell division; influenced by smoking, insomnia (shorter), and physical activity (longer).</li>
+                            <li><strong>Epigenetic clocks:</strong> Based on DNA methylation patterns (e.g., DNAm PhenoAge).</li>
+                            <li><strong>Inflammation & Endothelial Dysfunction:</strong> hs-CRP, intercellular adhesion molecule 1 (ICAM-1).</li>
+                            <li><strong>Hormonal Balance:</strong> Testosterone levels (in men).</li>
+                            <li><strong>Oxidative Stress:</strong> Advanced glycation end-products (AGEs).</li>
+                            <li><strong>Mitochondrial & Neuronal Health:</strong> Growth differentiation factor 15 (GDF-15), brain-derived neurotrophic factor (BDNF - reduced in insomnia).</li>
+                        </ul>
+                    `
+                },
+                'nutrition-metabolic': {
+                    title: 'Nutrition and Metabolic Assessment',
+                    content: `
+                        <p>Metabolic health is assessed using a combination of anthropometric measures and biochemical markers:</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Anthropometrics:</strong> BMI, waist circumference, body composition.</li>
+                            <li><strong>Glucose & Insulin:</strong> Fasting glucose, insulin resistance indices, HbA1c (elevated HbA1c predicts poor outcomes in acute coronary syndrome).</li>
+                            <li><strong>Lipid Profiles:</strong> Standard lipid panel, advanced lipid testing (apolipoprotein B, LDL particle size), metabolomic profiling.</li>
+                            <li><strong>Micronutrients:</strong> Vitamin D, B12, folate (inform dietary adequacy).</li>
+                            <li><strong>Other:</strong> Homocysteine (methylation status), ferritin (iron stores).</li>
+                        </ul>
+                        <p class="mt-2"><strong>Taiwan-Specific:</strong> Dietary assessments must consider high sodium and preserved food consumption, betel-nut chewing, and variations in traditional and Western dietary patterns.</p>
+                    `
+                },
+                'physical-fitness': {
+                    title: 'Physical Health and Fitness Assessment',
+                    content: `
+                        <p>Cardiorespiratory fitness (CRF) and musculoskeletal strength are strong predictors of morbidity and mortality. Key assessment methods and markers include:</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Cardiorespiratory Fitness (CRF):</strong> Maximal or sub-maximal exercise testing (VO₂ max, 6-minute walk test). Higher CRF is associated with significantly lower all-cause mortality risk.</li>
+                            <li><strong>Muscular Strength:</strong> Grip strength, sit-to-stand, or chair-rise tests. High muscular strength combined with high CRF nearly halves all-cause mortality risk.</li>
+                            <li><strong>Bone Health:</strong> Bone mineral density, biomarkers like osteocalcin.</li>
+                            <li><strong>Wearables:</strong> Step counts and heart-rate variability provide continuous activity data, but require validation for accuracy.</li>
+                        </ul>
+                    `
+                },
+                'inflammation-immune': {
+                    title: 'Inflammation and Immune Function Assessment',
+                    content: `
+                        <p>Low-grade inflammation links unhealthy lifestyles to chronic diseases. Key inflammatory biomarkers include:</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>High-sensitivity C-reactive protein (hs-CRP):</strong> Widely used; elevated levels associated with higher risk of coronary heart disease and ischemic stroke.</li>
+                            <li><strong>Interleukin-6 (IL-6):</strong> Predicts cardiovascular mortality and major adverse events.</li>
+                            <li><strong>Pro-inflammatory Cytokines:</strong> Tumor necrosis factor-α (TNF-α), interleukin-1β (implicated in metabolic and neurodegenerative diseases).</li>
+                            <li><strong>General Screening:</strong> Erythrocyte sedimentation rate (ESR), white blood cell count (lack specificity).</li>
+                            <li><strong>Adipose Tissue Function:</strong> Adiponectin and leptin (reflect metabolic risk).</li>
+                        </ul>
+                    `
+                },
+                'stress-response': {
+                    title: 'Stress Response Assessment',
+                    content: `
+                        <p>Chronic psychological stress activates the HPA axis and sympathetic nervous system. Key markers and assessments include:</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Cortisol:</strong> Measured in saliva, blood, urine, or hair; chronic stress associated with blunted diurnal variation and elevated evening levels.</li>
+                            <li><strong>Heart-rate variability (HRV):</strong> Quantifies parasympathetic-sympathetic balance; reduced HRV signals poor stress resilience and predicts cardiovascular risk.</li>
+                            <li><strong>DHEA/Cortisol Ratio:</strong> Low ratio may indicate chronic stress (DHEA counters cortisol’s catabolic effects).</li>
+                            <li><strong>Catecholamines:</strong> Epinephrine, norepinephrine, and their metabolites provide insight into sympathetic activation.</li>
+                        </ul>
+                    `
+                },
+                'sleep-quality': {
+                    title: 'Sleep Quality Assessment',
+                    content: `
+                        <p>Sleep disturbances impair cognitive, metabolic, and immune functions. Key markers and parameters include:</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Melatonin:</strong> Reflects circadian rhythm and sleep-wake cycle alignment (saliva or serum).</li>
+                            <li><strong>Brain-Derived Neurotrophic Factor (BDNF):</strong> Levels decline in individuals with insomnia, especially with short sleep duration; inversely correlated with insomnia severity.</li>
+                            <li><strong>Objective Sleep Parameters:</strong> Total sleep time, sleep efficiency, sleep stages, nocturnal awakenings (obtained via polysomnography or consumer devices).</li>
+                        </ul>
+                    `
+                }
+            };
+
+            const domainModal = document.getElementById('domainModal');
+            const modalDomainTitle = document.getElementById('modalDomainTitle');
+            const modalDomainContent = document.getElementById('modalDomainContent');
+            const closeButton = domainModal.querySelector('.close-button');
+            const domainCards = document.querySelectorAll('.domain-card');
+
+            domainCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const domainKey = card.getAttribute('data-domain');
+                    const data = domainData[domainKey];
+                    if (data) {
+                        modalDomainTitle.textContent = data.title;
+                        modalDomainContent.innerHTML = data.content;
+                        domainModal.style.display = 'flex';
+                    }
+                });
+            });
+
+            closeButton.addEventListener('click', () => {
+                domainModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === domainModal) {
+                    domainModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

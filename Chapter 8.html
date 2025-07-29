@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Report: Avoidance of Risky Substances in Lifestyle Medicine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Calm Harmony" (Warm neutrals, complementary blues/teals, and subtle accents) -->
+    <!-- Application Structure Plan: A multi-section, scrollable single-page application. The structure begins with an Introduction highlighting the unique challenges of risky substance use in Taiwan. Subsequent sections cover specific substances (Betel-Quid, Tobacco, Alcohol, NPS, Methamphetamine) with interactive details on their health impacts and intervention strategies. The design emphasizes clear, concise information with accordion-style sections for each substance, allowing users to explore specific topics of interest. This structure prioritizes detailed information on critical public health issues in Taiwan. -->
+    <!-- Visualization & Content Choices: 
+        - Introduction: Textual overview of the importance of avoiding risky substances and Taiwan's unique context.
+        - Specific Substances (Betel-Quid, Tobacco, Alcohol, Novel Psychoactive Substances, Methamphetamine): Each substance has its own dedicated accordion-style section (HTML/CSS/JS). Each section includes:
+            - Health Impacts: Key statistics (e.g., oral cancer risk, life expectancy reduction) presented with bold numbers and concise descriptions.
+            - Strategies for Reduction/Treatment Approaches: Bulleted lists of evidence-based interventions (pharmacotherapies, behavioral therapies, policy measures), with specific examples relevant to Taiwan (e.g., betel-nut cessation programs, YouBike).
+            - For Betel-Quid, Tobacco, and Alcohol, specific risk percentages and reductions are highlighted.
+            - For NPS and Methamphetamine, the lack of approved pharmacotherapies and reliance on behavioral interventions are emphasized.
+        - Summary & Take-Home Messages: Concise bulleted lists for quick review of key information. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8f7f4;
+            color: #3a3a3a;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .accordion-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #f0f0f0;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            max-height: 600px; /* Adjusted for potentially longer content in this chapter */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .card-button {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white py-6 shadow-sm">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#003366]">Avoidance of Risky Substances: Taiwan's Unique Challenges</h1>
+            <p class="mt-2 text-lg text-gray-600">Addressing substance-related harms through culturally sensitive interventions.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="introduction" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Introduction: A Core Pillar of Lifestyle Medicine</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">The avoidance of risky substances is a core pillar of lifestyle medicine. In Taiwan, traditional practices and modern influences have shaped distinct substance-use patterns, including betel-quid chewing, tobacco smoking, alcohol consumption, novel psychoactive substances (NPS), and methamphetamine use. These behaviors significantly contribute to the burden of chronic diseases and require culturally sensitive interventions.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Taiwan's Substance Use Landscape</h3>
+                <ul class="list-none space-y-3 text-gray-700">
+                    <li class="flex items-start"><span class="text-xl mr-3">🌿</span> **Betel-quid chewing:** Widespread, particularly among men and manual laborers.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🚬</span> **Tobacco smoking:** Leading preventable cause of death.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🍻</span> **Alcohol consumption:** Widely consumed, often in social/business contexts.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💊</span> **Novel Psychoactive Substances (NPS):** Synthetic compounds with unpredictable toxicities.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">🧊</span> **Methamphetamine (METH) use:** Significant problem in specific groups.</li>
+                </ul>
+                <p class="mt-4 text-gray-700 italic">"These behaviors contribute to an increased burden of cancer, cardiovascular disease, metabolic disorders and mental health problems."</p>
+            </div>
+        </section>
+
+        <section id="betel-quid" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Betel-Quid Chewing: Health Impacts & Strategies</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Betel-quid chewing is deeply embedded in parts of Taiwanese culture, yet it is strongly associated with severe oral and systemic diseases. Understanding its risks and effective reduction strategies is crucial.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
+                <div class="accordion-header p-6 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-800">Health Impacts of Betel-Quid Chewing</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Oral Cancer:</strong> Habitual chewers have a <strong class="text-red-700">7.9 times higher risk</strong> of oral cancer; roughly half of oral cancers in Taiwan are attributable to betel-quid. Dose-response relation exists.</li>
+                        <li><strong>Chronic Kidney Disease (CKD):</strong> Independently increases CKD risk by <strong class="text-red-700">44%</strong>.</li>
+                        <li><strong>Liver Disease:</strong> Independent risk factor for chronic liver disease, cirrhosis, and hepatocellular carcinoma (HCC). Population-attributable risks: <strong class="text-red-700">20% for HCC, 12% for cirrhosis</strong>. Heavy chewers (>30 years) had <strong class="text-red-700">OR 18.9</strong> for chronic liver disease.</li>
+                    </ul>
+                </div>
+                <div class="accordion-header p-6 flex justify-between items-center mt-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Strategies for Reduction</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Culturally tailored health education, behavioral counseling, community-based programs emphasizing carcinogenicity and synergy with tobacco/alcohol.</li>
+                        <li>Highlight cessation benefits (reduces cancer/liver disease risk) and provide alternative stress-coping strategies.</li>
+                        <li>Public-health campaigns to reduce cultivation/marketing; continued regulation of sales and chewing in workplaces/schools.</li>
+                        <li>Routine screening by oral-health professionals and primary-care providers, brief counseling, and referral to cessation services.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="tobacco-smoking" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Tobacco Smoking: Impacts & Cessation Therapy</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Tobacco remains a leading preventable cause of death in Taiwan. Quitting dramatically lowers risk, and evidence-based cessation therapies significantly increase quit rates.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
+                <div class="accordion-header p-6 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-800">Health Impacts of Tobacco Smoking</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Adolescent onset, adult continuation: Lose approximately <strong class="text-red-700">10 years</strong> of life expectancy.</li>
+                        <li>Quitting before age 40: Reduces smoking-related mortality by about <strong class="text-teal-600">90%</strong>.</li>
+                        <li>Two-thirds of deaths among continuing smokers are avoidable.</li>
+                        <li>Synergizes with betel-nut and alcohol to amplify cancer and cardiovascular risk.</li>
+                    </ul>
+                </div>
+                <div class="accordion-header p-6 flex justify-between items-center mt-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Evidence-Based Cessation Therapy</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Pharmacotherapies:</strong> Significantly increase quit rates.
+                            <ul class="list-circle list-inside ml-4">
+                                <li>NRT and Bupropion: Help ~<strong class="text-teal-600">80% more</strong> smokers achieve long-term abstinence vs. placebo.</li>
+                                <li>Varenicline: Most effective single agent, yields abstinence rates ~<strong class="text-teal-600">2.7 times higher</strong> than placebo.</li>
+                                <li>Combination therapy (long-acting patch + short-acting gum/lozenge) can further improve outcomes.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Behavioral Support:</strong> Brief advice from physicians, structured counseling, quit lines, text-message interventions.</li>
+                        <li><strong>Policy:</strong> Smoke-free legislation, taxation, mass media campaigns.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="alcohol" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Alcohol Consumption: Risks & Harm Reduction</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Alcohol is widely consumed in Taiwan, but accumulating evidence indicates that no level of consumption is safe. It is a significant contributor to global mortality and numerous cancers.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
+                <div class="accordion-header p-6 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-800">Health Impacts of Alcohol</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Contributes to: <strong class="text-red-700">48%</strong> of liver cirrhosis, <strong class="text-red-700">26%</strong> of oral cancers, <strong class="text-red-700">11%</strong> of colon cancers, <strong class="text-red-700">5%</strong> of breast cancers globally.</li>
+                        <li>Accounts for <strong class="text-red-700">5.3%</strong> of global deaths; leading risk factor for mortality among 15-49 years.</li>
+                        <li>Even modest drinking increases cancer risk; no safe threshold. Cessation reduces risk.</li>
+                        <li>In East Asian populations: High prevalence of ALDH2 deficiency leads to acetaldehyde accumulation, markedly elevating risk of esophageal and head-and-neck cancers at low alcohol intake.</li>
+                    </ul>
+                </div>
+                <div class="accordion-header p-6 flex justify-between items-center mt-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Harm Reduction & Treatment Approaches</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Public Health Recommendations:</strong> Encourage avoidance or minimal consumption (e.g., Canada's guidance: no more than 2 standard drinks/week; WHO: safest option is not to drink).</li>
+                        <li><strong>Screening:</strong> Alcohol Use Disorders Identification Test (AUDIT) in primary care.</li>
+                        <li><strong>Interventions:</strong> Brief interventions, motivational interviewing for hazardous drinking.</li>
+                        <li><strong>Treatment for Alcohol Use Disorder:</strong> Behavioral therapies (CBT, mutual-support groups), medications (naltrexone, acamprosate, disulfiram).</li>
+                        <li><strong>Policy:</strong> Restrict availability/marketing, increase pricing, enforce drink-driving laws.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="nps" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Novel Psychoactive Substances (NPS): Unpredictable Dangers</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">NPS are synthetic compounds designed to mimic traditional drugs, but their unregulated nature leads to unpredictable and often fatal toxicities. They pose an emergent public health threat.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
+                <div class="accordion-header p-6 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-800">Risks & Documented Complications</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Unregulated & Variable Potency:</strong> Composition and potency vary widely, leading to unpredictable and sometimes fatal toxicities.</li>
+                        <li><strong>Severe Adverse Effects:</strong> Arrhythmias, myocardial infarction, sudden cardiac death, psychosis, suicidal ideation, seizures, acute kidney injury, hepatic necrosis, intracranial hemorrhage.</li>
+                        <li>Some products (synthetic cannabinoids) are far more potent than natural cannabis.</li>
+                        <li>Increasingly reported: Synthetic cathinones and designer benzodiazepines.</li>
+                    </ul>
+                </div>
+                <div class="accordion-header p-6 flex justify-between items-center mt-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Clinical Management & Prevention</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>No Approved Pharmacologic Treatments:</strong> Management of acute toxicity focuses on supportive care and symptom-targeted therapy.</li>
+                        <li><strong>Acute Management:</strong> Benzodiazepines for agitation/anxiety/seizures; antipsychotics cautiously for severe psychosis.</li>
+                        <li><strong>Long-term Management:</strong> Behavioral therapies, harm-reduction counseling, addressing underlying mental health/social issues.</li>
+                        <li><strong>Education:</strong> Educate patients about unpredictable potency and contamination risks.</li>
+                        <li><strong>Policy:</strong> Rapid scheduling of new substances, improved early warning systems to limit market proliferation.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="methamphetamine" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Methamphetamine Use: Challenges in Treatment</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Methamphetamine use, while less prevalent generally, is a significant problem in specific groups in Taiwan, associated with high-risk behaviors and severe health consequences. A major challenge is the lack of FDA-approved medication for its use disorder.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
+                <div class="accordion-header p-6 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-800">Health Impacts & Treatment Gap</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Prevalence: Significant problem among specific groups (e.g., men who have sex with men), associated with high-risk sexual behavior and increased HIV/STI incidence.</li>
+                        <li>Chronic Use Leads to: Neurotoxicity, cardiovascular complications, dental disease, psychiatric symptoms, cognitive deficits.</li>
+                        <li><strong>No FDA-Approved Medication:</strong> Current treatment relies solely on behavioral therapies, with no consistently effective pharmacotherapy found.</li>
+                    </ul>
+                </div>
+                <div class="accordion-header p-6 flex justify-between items-center mt-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Behavioral & Psychosocial Interventions</h3>
+                    <span class="text-2xl transform transition-transform duration-300">▼</span>
+                </div>
+                <div class="accordion-content px-6">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Evidence-Based Approaches:</strong> Cognitive-behavioral therapy (CBT), contingency management (tangible rewards for drug-free tests), motivational interviewing.</li>
+                        <li><strong>Contingency Management:</strong> Moderate-to-large effect sizes in reducing stimulant use and improving treatment retention.</li>
+                        <li><strong>CBT:</strong> Equips individuals with coping skills to manage cravings and triggers.</li>
+                        <li><strong>Integrated Programs:</strong> Address co-occurring mental health disorders, trauma, and social determinants.</li>
+                        <li><strong>Harm-Reduction Strategies:</strong> Safe-sex education, syringe-exchange services, regular HIV testing (to reduce infectious complications).</li>
+                        <li><strong>Support:</strong> Community-based support groups, peer navigation, culturally sensitive outreach programs.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary-takehome" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#003366] mb-2">Summary & Take-Home Messages</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Risky substance use is a modifiable driver of morbidity and mortality in Taiwan. Evidence-based interventions, culturally tailored approaches, and regulatory policies are essential to reduce substance-related harms.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+                <ul class="list-none space-y-4 text-gray-700">
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Areca-nut chewing:** Highly carcinogenic and nephrotoxic. Increases oral cancer risk 8-fold; contributes to CKD and liver cirrhosis; half of Taiwan's oral cancers attributable to it.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Smoking:** Markedly shortens life expectancy (~10 years lost). Quitting before 40 reduces mortality by ~90%. Pharmacotherapies (varenicline, bupropion, NRT) double/triple quit rates.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Alcohol:** No safe amount. Contributes to significant cirrhosis/cancer deaths (over 5% global mortality). Even low levels increase cancer risk; cessation lowers risk.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Novel Psychoactive Substances (NPS):** Unpredictable and dangerous. Can cause severe cardiovascular, neurological, psychiatric, and organ failure complications.</li>
+                    <li class="flex items-start"><span class="text-xl mr-3">💡</span> **Methamphetamine Use Disorder (MUD):** No approved medication. Treatment relies on behavioral interventions (CBT, contingency management, motivational interviewing); integrated harm-reduction services are essential.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-16 py-6 border-t">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>Source: Chapter 8: Avoidance of Risky Substances (Fictionalized Data for Demonstration)</p>
+            <p class="text-sm mt-2">&copy; 2025 Interactive Report. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('span:last-child');
+                    
+                    document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                        if (openContent !== content) {
+                            openContent.classList.remove('open');
+                            openContent.previousElementSibling.querySelector('span:last-child').classList.remove('rotate-180');
+                        }
+                    });
+
+                    content.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
